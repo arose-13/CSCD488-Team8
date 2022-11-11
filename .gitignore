@@ -1,7 +1,7 @@
 # Ignored folders
 .vscode/
 .idea/
-.team8/target/
+team8/target/**
 
 # Ignore compiled files
 *.class
