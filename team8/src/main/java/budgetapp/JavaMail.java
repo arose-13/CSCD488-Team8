@@ -11,10 +11,10 @@ import javax.mail.Transport;
 public class JavaMail {
     public static void main(String[] args) throws Exception {
         // email ID of Recipient.
-      String recipient = "team.eight.noreply@gmail.com";
+      String toEmail = "team.eight.noreply@gmail.com";
  
       // email ID of  Sender.
-      String sender = "team.eight.noreply@gmail.com";
+      String fromEmail = "team.eight.noreply@gmail.com";
  
       // using host as localhost
       String host = "smtp.gmail.com";
@@ -41,22 +41,26 @@ public class JavaMail {
       try
       {
          // MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
+         MimeMessage msg = new MimeMessage(session);
  
-         // Set From Field: adding senders email to from field.
-         message.setFrom(new InternetAddress(sender));
- 
-         // Set To Field: adding recipient's email to from field.
-         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
- 
-         // Set Subject: subject of the email
-         message.setSubject("This is Subject");
- 
-         // set body of the email.
-         message.setText("This is a test mail");
- 
-         // Send email.
-         Transport.send(message);
+         //set message headers
+	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+	      msg.addHeader("format", "flowed");
+	      msg.addHeader("Content-Transfer-Encoding", "8bit");
+
+	      msg.setFrom(new InternetAddress(fromEmail, "Team8NoReply"));
+
+	      msg.setReplyTo(InternetAddress.parse(fromEmail, false));
+
+	      msg.setSubject("Default Subject", "UTF-8");
+
+	      msg.setText("Default Body", "UTF-8");
+
+	      msg.setSentDate(new Date());
+
+	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+	      System.out.println("Message is ready");
+    	  Transport.send(msg);  
          System.out.println("Mail successfully sent");
       }
       catch (MessagingException mex)
