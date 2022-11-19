@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const request = new XMLHttpRequest();
 
+    const createAccountButton = document.getElementById("createAccount");
+
+    createAccountButton.addEventListener("click", () => {
+        window.location.href = "signup.html";
+    })
+
     loginForm.addEventListener("submit", (e) => {
         console.log("credentials submitted");
         e.preventDefault();
