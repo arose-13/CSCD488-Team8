@@ -1,26 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
+    const loginForm = document.querySelector("#login"); //type form element
     const request = new XMLHttpRequest();
 
-    const createAccountButton = document.getElementById("createAccount");
+    const createAccountButton = document.getElementById("createAccount");//input element
+    const forgotPasswordButton = document.getElementById("forgotPassword");
 
-    createAccountButton.addEventListener("click", () => {
+    createAccountButton.addEventListener("click", function () {
         window.location.href = "signup.html";
     })
 
+    forgotPasswordButton.addEventListener("click", function () {
+        window.location.href = "password-recovery.html";
+    })
+
     loginForm.addEventListener("submit", (e) => {
-        console.log("credentials submitted");
         e.preventDefault();
         const email = e.target.querySelector("#email").value;
         const password = e.target.querySelector("#password").value;
         console.log(email)
         console.log(password)
-        //Add GET command
-    })
-
-    document.querySelector("#forgotPassword").addEventListener("click", () => {
-        console.log("password forgotten");
-        //pull up forgot password screen
     })
 })
 
