@@ -26,9 +26,10 @@
     $test;
     exec('java ..\java\budgetapp\Test.java', $test);
 
-    foreach ($test as $output) {
-        echo("<p>" . $output . "</p");
-    }
+    if ($test)
+        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' was successful.</p>");
+    else
+        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' failed.<p>");
 
 ?>
 
@@ -36,21 +37,29 @@
 <html>
 <head>
     <title>Budgeting Page</title>
-    <!-- <a rel = "stylesheet" href = "default.css" type = "text/css"> -->
+    <link rel = "stylesheet" href = "css/default.css" type = "text/css">
 </head>
 
 <body>
 
-    <form method = "POST" action = "">
+    <?php include 'components/header.html'; ?>
 
-        <input type = "radio" name = "type" value = "income">Income
-        <input type = "radio" name = "type" value = "expense">Expense
-        <br>
-        $<input type = "number" name = "amount">
+    <main>
 
-        <input type = "submit" value = "Submit">
+        <form method = "POST" action = "">
 
-    </form>
+            <input type = "radio" name = "type" value = "income">Income
+            <input type = "radio" name = "type" value = "expense">Expense
+            <br>
+            $<input type = "number" name = "amount">
+
+            <input type = "submit" value = "Submit">
+
+        </form>
+
+    </main>
+
+    <?php include 'components/footer.html'; ?>
 
 </body>
 

@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid orange;
+    padding: 1%;
+}
+.header ul li {
+    list-style: none;
+    float: left;
+    padding-right: 15px;
+}
+.header a {
+    text-decoration: none;
+    color: orange;
+}
+.header a:hover {
+    font-weight: bold;
+}
+
+/* main styling */
+main {
+    padding: 2%;
+}
+
+/* footer styling */
+.footer {
+    padding: 1%;
+    border-top: 1px solid orange;
+}

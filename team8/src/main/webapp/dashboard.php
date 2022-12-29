@@ -25,26 +25,34 @@
 <html>
 <head>
     <title>Dashboard Page</title>
-    <!-- <a rel = "stylesheet" href = "default.css" type = "text/css"> -->
+    <link rel = "stylesheet" href = "css/default.css" type = "text/css">
 </head>
 
 <body>
 
-    <h1>Welcome<?php $fname ?></h1>
+    <?php include 'components/header.html' ?>
 
-    <!-- Display income -->
-    <?php
-        // foreach ($income as $source) {
-        //     echo($source);
-        // }
-    ?>
+    <main>
 
-    <!-- Display expenses -->
-    <?php
-        // foreach ($expenses as $expense) {
-        //     echo($expense);
-        // }
-    ?>
+        <h1>Welcome<?php $fname ?></h1>
+
+        <!-- Display income -->
+        <?php
+            // foreach ($income as $source) {
+            //     echo($source);
+            // }
+        ?>
+
+        <!-- Display expenses -->
+        <?php
+            // foreach ($expenses as $expense) {
+            //     echo($expense);
+            // }
+        ?>
+
+    </main>
+
+    <?php include 'components/footer.html'; ?>
 
 </body>
 
