@@ -7,14 +7,20 @@ html, body {
 /* header styling */
 .header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid orange;
     padding: 1%;
 }
+.header .logo {
+    margin-right: 25px;
+}
 .header ul li {
+    padding-top: 3px;
+}
+.header ul {
     list-style: none;
-    float: left;
-    padding-right: 15px;
+    padding: 0;
+    margin: 0;
 }
 .header a {
     text-decoration: none;
@@ -22,6 +28,23 @@ html, body {
 }
 .header a:hover {
     font-weight: bold;
+}
+
+.menu button {
+    border: 0;
+    background-color: transparent;
+    color: orange;
+    font-size: large;
+}
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid orange;
+}
+.menu:hover .dropdown-menu {
+    display: block;
 }
 
 /* main styling */

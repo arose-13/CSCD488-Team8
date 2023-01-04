@@ -38,6 +38,7 @@
 <head>
     <title>Budgeting Page</title>
     <link rel = "stylesheet" href = "css/default.css" type = "text/css">
+    <?php include 'components/head.html'; ?>
 </head>
 
 <body>
