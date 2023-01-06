@@ -14,22 +14,33 @@ html, body {
 .header .logo {
     margin-right: 25px;
 }
-.header ul li {
+
+/* Application header styling */
+#app-header .menu .dropdown-menu ul li {
     padding-top: 3px;
 }
-.header ul {
+#app-header .menu .dropdown-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.header a {
-    text-decoration: none;
-    color: orange;
+
+/* Main site header styling */
+#main-header .nav-links ul {
+    margin: 0;
 }
-.header a:hover {
-    font-weight: bold;
+#main-header .nav-links ul li {
+    list-style: none;
+    float: left;
+    margin-left: 1rem;
+}
+#main-header {
+    justify-content: space-between;
+    padding-right: 3%;
+    padding-left: 3%;
 }
 
+/* Drop-down menu styling */
 .menu button {
     border: 0;
     background-color: transparent;
@@ -56,4 +67,8 @@ main {
 .footer {
     padding: 1%;
     border-top: 1px solid orange;
+}
+#main-footer {
+    padding-right: 3%;
+    padding-left: 3%;
 }
