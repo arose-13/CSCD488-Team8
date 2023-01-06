@@ -31,7 +31,7 @@
 
 <body>
 
-    <?php include 'components/header.html' ?>
+    <?php include 'components/app-header.html' ?>
 
     <main>
 
@@ -53,7 +53,7 @@
 
     </main>
 
-    <?php include 'components/footer.html'; ?>
+    <?php include 'components/app-footer.html'; ?>
 
 </body>
 
