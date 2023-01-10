@@ -20,6 +20,10 @@ public class JavaDBConnect {
 
             connection.close();
 
+            // Output expected
+            // 1 | testUser | notHashedPW | testEmail@email.com
+            // 2 | testUser2 | notHashedPW2 | testEmail@email.com2
+
         } catch (Exception e) {
             System.out.println(e);
         }
