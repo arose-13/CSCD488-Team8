@@ -1,4 +1,6 @@
-package budgetapp;
+package budgetapp.JavaEmail;
+
+import budgetapp.AppUser.AppUser;
 
 import java.util.*;
 import javax.mail.*;
@@ -12,7 +14,7 @@ public class JavaMail {
   private final String fromEmail = "team.eight.noreply@gmail.com";
   private Session session;
   private MimeMessage msg;
-  private String type = "default";
+  private AppUser user;
 
   public JavaMail() throws Exception {
     this.session = setUpEmailSession();
@@ -24,30 +26,15 @@ public class JavaMail {
     this.toEmail = to;
   }
 
-  public JavaMail(final String to, final String type) throws Exception {
-    this(to);
-    this.type = type; // May need to wash input.
+  public JavaMail(final AppUser user) throws Exception {
+    this(user.getEmail());
+
   }
 
   public static void main(String[] args) throws Exception {
-    JavaMail myMail = new JavaMail("team.eight.noreply@gmail.com", "deleteAccount");
-    try {
-      if (myMail.type == "default") {
-        myMail.setMessage("default subject", "default body");
-      } else if (myMail.type == "authentication") {
-        myMail.setMessage("Account Authentication", "Account Authentication Default Text");
-
-      } else if (myMail.type == "deleteAccount") {
-        myMail.setMessage("Account Deletion", "Account Deletion Default Text");
-      } else {
-        System.out.println("myMail.type not valid");
-        throw new Exception();
-      }
-      Transport.send(myMail.msg);
-      System.out.println("Mail successfully sent");
-    } catch (MessagingException mex) {
-      mex.printStackTrace();
-    }
+    AppUser test = new AppUser("testName", "testPass", "team.eight.noreply@gmail.com");
+    JavaMail myMail = new JavaMail(test);
+    myMail.sendAuthenticationEmail(test);
   }
 
   private void setMessage(final String subject, final String body) throws Exception {
@@ -98,4 +85,58 @@ public class JavaMail {
       throw new Exception(e);
     }
   }
+
+  public void sendAuthenticationEmail(AppUser user) throws Exception {
+      try {
+        this.setMessage("Default Authentication Email Subject", "Default Authenticaiton Email Body Text\n"+user.getEmail()+"\n"+user.getPassword());
+        Transport.send(this.msg);
+        System.out.println("Mail successfully sent");
+      } catch (MessagingException mex) {
+        mex.printStackTrace();
+      }
+  }
+
+  public void sendDeleteAccountEmail(AppUser user) throws Exception {
+      try {
+        this.setMessage("Default Account Deletion Email Subject", "Default Deletion Email Body Text\n"+user.getEmail()+"\n"+user.getPassword());
+        Transport.send(this.msg);
+        System.out.println("Mail successfully sent");
+      } catch (MessagingException mex) {
+        mex.printStackTrace();
+      }
+  }
+
+  public void sendEmail(AppUser user, String Subject, String Body) throws Exception {
+    try {
+      this.setMessage(Subject, Body+user.getEmail()+"\n"+user.getPassword());
+      Transport.send(this.msg);
+      System.out.println("Mail successfully sent");
+    } catch (MessagingException mex) {
+      mex.printStackTrace();
+    }
+  }
 }
+
+
+
+  // //Sanity check for testing
+  // public static void main(String[] args) throws Exception {
+  //   JavaMail myMail = new JavaMail("team.eight.noreply@gmail.com", "deleteAccount");
+  //   try {
+  //     if (myMail.type == "default") {
+  //       myMail.setMessage("default subject", "default body");
+  //     } else if (myMail.type == "authentication") {
+  //       myMail.setMessage("Account Authentication", "Account Authentication Default Text");
+
+  //     } else if (myMail.type == "deleteAccount") {
+  //       myMail.setMessage("Account Deletion", "Account Deletion Default Text");
+  //     } else {
+  //       System.out.println("myMail.type not valid");
+  //       throw new Exception();
+  //     }
+  //     Transport.send(myMail.msg);
+  //     System.out.println("Mail successfully sent");
+  //   } catch (MessagingException mex) {
+  //     mex.printStackTrace();
+  //   }
+  // }
