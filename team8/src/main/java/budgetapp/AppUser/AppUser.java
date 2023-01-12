@@ -1,72 +1,84 @@
 package budgetapp.AppUser;
 
-import java.util.HashMap;
-import java.util.UUID;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
+
+// import java.util.HashMap;
+// import java.util.UUID;
+// import java.security.MessageDigest;
+// import java.security.NoSuchAlgorithmException;
 
 public class AppUser {
-    private Long id;
-    private String uname;
-    private String hpassword;
-    private String email;
+    //private String id;
+    private String uName;
+    private String uPassword;
+    private String uEmail;
+    private Date uDate;
 
     public AppUser() { }
 
-    public AppUser(String uname, String password, String email) { 
-        this.uname = uname;
-        this.hpassword = hash(password);
-        this.email = email;
+    public AppUser(final String uname, final String password, final String email, final Date date) { 
+        this.setuName(uname);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setuDate(date);
         //this.id = UUID.randomUUID();
     }
 
-    public String hash(String pword) {
-        String hashedPassword = null;
-        try {
-            //Create MessageDigest instancce for MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
+    // public String hash(String pword) {
+    //     String hashedPassword = null;
+    //     try {
+    //         //Create MessageDigest instancce for MD5
+    //         MessageDigest md = MessageDigest.getInstance("MD5");
 
-            //Add password bytes to digest
-            md.update(pword.getBytes());
+    //         //Add password bytes to digest
+    //         md.update(pword.getBytes());
 
-            //Get the hash's bytes
-            byte[] bytes = md.digest();
+    //         //Get the hash's bytes
+    //         byte[] bytes = md.digest();
 
-            //bytes[] has bytes in decimal format, so we convert it to hexadecimal
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++) {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            //Get complete hashed password in hex format
-            hashedPassword = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return hashedPassword;
+    //         //bytes[] has bytes in decimal format, so we convert it to hexadecimal
+    //         StringBuilder sb = new StringBuilder();
+    //         for (int i = 0; i < bytes.length; i++) {
+    //             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+    //         }
+    //         //Get complete hashed password in hex format
+    //         hashedPassword = sb.toString();
+    //     } catch (NoSuchAlgorithmException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return hashedPassword;
+    // }
+
+    public void setuName(String uname) {
+        this.uName = uname;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
-
-    public String getUname() {
-        return this.uname;
+    public String getuName() {
+        return this.uName;
     }
 
     public void setPassword(String password) {
-        this.hpassword = hash(password);
+        this.uPassword = password;
     }
 
     public String getPassword() {
-        return this.hpassword;
+        return this.uPassword;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.uEmail = email;
     }
 
     public String getEmail() {
-        return this.email;
+        return this.uEmail;
+    }
+
+    public Date getuDate() {
+        return uDate;
+    }
+
+    public void setuDate(Date uDate) {
+        this.uDate = uDate;
     }
 
     // public String getId() {
@@ -76,7 +88,7 @@ public class AppUser {
     @Override
     public String toString() {
         //Used for testing to get information about the AppUser
-        return this.uname + ": " + "email: " + this.email + " hashed password: " + this.hpassword + " id: " + this.id;
+        return this.uName + ": " + "email: " + this.uEmail + " hashed password: " + this.uPassword; // + " id: " + this.id;
     }
 
     // public static void main(String[] args) throws Exception {
