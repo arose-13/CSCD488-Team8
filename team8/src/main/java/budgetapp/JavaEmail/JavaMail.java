@@ -42,8 +42,8 @@ public class JavaMail {
     
     AppUser test = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", date);
     JavaMail myMail = new JavaMail(test);
-    boolean sent = myMail.sendAuthenticationEmail(test);
-    System.out.println(sent);
+    String verificationCode = myMail.sendAuthenticationEmail(test);
+    System.out.println(verificationCode);
   }
 
   private String getRandom() {
@@ -103,7 +103,8 @@ public class JavaMail {
     }
   }
 
-  public boolean sendAuthenticationEmail(AppUser user) throws Exception {
+  //Takes user as input, will send user email authentication code, outputs verification code as string if email sent, otherwise return empty string.
+  public String sendAuthenticationEmail(AppUser user) throws Exception {
       boolean sent = false;
       String verification = this.getRandom();
       try {
@@ -114,7 +115,11 @@ public class JavaMail {
       } catch (MessagingException mex) {
         mex.printStackTrace();
       }
-      return sent;
+      if (sent) {
+        return verification;
+      } else {
+        return "";
+      }
   }
 
   public boolean sendDeleteAccountEmail(AppUser user) throws Exception {
@@ -144,26 +149,3 @@ public class JavaMail {
   }
 }
 
-
-
-  // //Sanity check for testing
-  // public static void main(String[] args) throws Exception {
-  //   JavaMail myMail = new JavaMail("team.eight.noreply@gmail.com", "deleteAccount");
-  //   try {
-  //     if (myMail.type == "default") {
-  //       myMail.setMessage("default subject", "default body");
-  //     } else if (myMail.type == "authentication") {
-  //       myMail.setMessage("Account Authentication", "Account Authentication Default Text");
-
-  //     } else if (myMail.type == "deleteAccount") {
-  //       myMail.setMessage("Account Deletion", "Account Deletion Default Text");
-  //     } else {
-  //       System.out.println("myMail.type not valid");
-  //       throw new Exception();
-  //     }
-  //     Transport.send(myMail.msg);
-  //     System.out.println("Mail successfully sent");
-  //   } catch (MessagingException mex) {
-  //     mex.printStackTrace();
-  //   }
-  // }

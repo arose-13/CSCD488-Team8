@@ -29,8 +29,23 @@ CREATE TABLE `appusertable` (
   `userName` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
+  `userCreationDate` date NOT NULL,
+  `accountActivated` tinyint NOT NULL DEFAULT '1',
+  `userRole` enum('USER','ADMIN') NOT NULL DEFAULT 'USER',
+  `m01` json DEFAULT NULL,
+  `m02` json DEFAULT NULL,
+  `m03` json DEFAULT NULL,
+  `m04` json DEFAULT NULL,
+  `m05` json DEFAULT NULL,
+  `m06` json DEFAULT NULL,
+  `m07` json DEFAULT NULL,
+  `m08` json DEFAULT NULL,
+  `m09` json DEFAULT NULL,
+  `m10` json DEFAULT NULL,
+  `m11` json DEFAULT NULL,
+  `m12` json DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +54,7 @@ CREATE TABLE `appusertable` (
 
 LOCK TABLES `appusertable` WRITE;
 /*!40000 ALTER TABLE `appusertable` DISABLE KEYS */;
+INSERT INTO `appusertable` VALUES (1,'testUser','notHashedPW','testEmail@email.com','0000-00-00',1,'USER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'testUser2','notHashedPW2','testEmail@email.com2','0000-00-00',1,'USER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `appusertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-10 15:35:04
+-- Dump completed on 2023-01-13 12:44:51
