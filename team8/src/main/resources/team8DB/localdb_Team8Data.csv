@@ -1,2 +1,0 @@
-Id,userName,password,email
-NULL,testUser,testPasswordNotHashed,testEmail@email.com
