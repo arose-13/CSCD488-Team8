@@ -2,6 +2,8 @@ package budgetapp.AppUser;
 
 import java.sql.Date;
 
+import javax.json.Json;
+
 // import java.util.HashMap;
 // import java.util.UUID;
 // import java.security.MessageDigest;
@@ -13,6 +15,7 @@ public class AppUser {
     private String uPassword;
     private String uEmail;
     private Date uDate;
+    private Json data;
 
     public AppUser() { }
 

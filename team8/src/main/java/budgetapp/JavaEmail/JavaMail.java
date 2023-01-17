@@ -108,7 +108,7 @@ public class JavaMail {
       boolean sent = false;
       String verification = this.getRandom();
       try {
-        this.setMessage("Default Email Authentication Email Subject", "Default Authenticaiton Email Body Text\n"+user.getEmail()+"\n"+"User Verification Code: "+verification);
+        this.setMessage("Default Email Authentication Email Subject", "Default Authentication Email Body Text\n"+user.getEmail()+"\n"+"User Verification Code: "+verification);
         Transport.send(this.msg);
         System.out.println("Mail successfully sent");
         sent = true;
@@ -122,23 +122,30 @@ public class JavaMail {
       }
   }
 
-  public boolean sendDeleteAccountEmail(AppUser user) throws Exception {
-      boolean sent = false;
-      try {
-        this.setMessage("Default Account Deletion Email Subject", "Default Deletion Email Body Text\n"+user.getEmail()+"\n"+user.getPassword());
-        Transport.send(this.msg);
-        System.out.println("Mail successfully sent");
-        sent = true;
-      } catch (MessagingException mex) {
-        mex.printStackTrace();
-      }
-      return sent;
-  }
+  //Takes user as input, will send user email deletion code, outputs verification code as string if email sent, otherwise return empty string.
+  public String sendDeleteAccountEmail(AppUser user) throws Exception {
+    boolean sent = false;
+    String verification = this.getRandom();
+    try {
+      this.setMessage("Default Email Deletion Email Subject", "Default Deletion Email Body Text\n"+user.getEmail()+"\n"+"User Verification Code: "+verification);
+      Transport.send(this.msg);
+      System.out.println("Mail successfully sent");
+      sent = true;
+    } catch (MessagingException mex) {
+      mex.printStackTrace();
+    }
+    if (sent) {
+      return verification;
+    } else {
+      return "";
+    }
+}
 
+  //Will return true if email is successfully sent, otherwise return false
   public boolean sendEmail(AppUser user, String Subject, String Body) throws Exception {
       boolean sent = false;
     try {
-      this.setMessage(Subject, Body+user.getEmail()+"\n"+user.getPassword());
+      this.setMessage(Subject, Body+'\n'+user.getEmail()+"\n"+user.getPassword());//This will need to be changed
       Transport.send(this.msg);
       System.out.println("Mail successfully sent");
       sent = true;
