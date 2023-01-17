@@ -1,10 +1,11 @@
-package budgetapp.JavaEmail;
-
-import budgetapp.AppUser.AppUser;
+package budgetapp.javaEmail;
 
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import budgetapp.appUser.AppUser;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import java.sql.*;

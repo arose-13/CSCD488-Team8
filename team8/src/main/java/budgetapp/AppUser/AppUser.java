@@ -1,4 +1,4 @@
-package budgetapp.AppUser;
+package budgetapp.appUser;
 
 import java.sql.Date;
 
