@@ -63,6 +63,14 @@
         </dependency>
 
         <!-- RESTful API Controller Class using Jersey Dependencies -->
+
+                        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jersey.archetypes</groupId>
             <artifactId>jersey-quickstart-webapp</artifactId>
