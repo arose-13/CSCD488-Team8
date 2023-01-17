@@ -18,7 +18,7 @@
 
     <dependencies>
 
-    <!-- mySQL Dependencies -->
+        <!-- mySQL Dependencies -->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -62,12 +62,49 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.archetypes/jersey-quickstart-webapp -->
+        <!-- RESTful API Controller Class using Jersey Dependencies -->
+
+                        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jersey.archetypes</groupId>
             <artifactId>jersey-quickstart-webapp</artifactId>
             <version>3.1.0</version>
         </dependency>
+
+                <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-common -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+                <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+                <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+                <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
 
 
 
