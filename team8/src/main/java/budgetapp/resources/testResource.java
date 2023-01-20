@@ -10,7 +10,7 @@ public class TestResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String testString() {
+    public String TestString() {
         return "Hello Worldz";
     }
     
