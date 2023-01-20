@@ -1,4 +1,4 @@
-package budgetapp.javaEmail;
+package budgetapp.davaEmail;
 
 import java.util.*;
 import javax.mail.*;

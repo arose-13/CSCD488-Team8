@@ -1,4 +1,4 @@
-package budgetapp.databaseConnection;
+package budgetapp.jatabaseConnection;
 
 import java.sql.*;
 
