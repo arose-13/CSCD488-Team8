@@ -1,0 +1,74 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* header styling */
+.header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid orange;
+    padding: 1%;
+}
+.header .logo {
+    margin-right: 25px;
+}
+
+/* Application header styling */
+#app-header .menu .dropdown-menu ul li {
+    padding-top: 3px;
+}
+#app-header .menu .dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Main site header styling */
+#main-header .nav-links ul {
+    margin: 0;
+}
+#main-header .nav-links ul li {
+    list-style: none;
+    float: left;
+    margin-left: 1rem;
+}
+#main-header {
+    justify-content: space-between;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+/* Drop-down menu styling */
+.menu button {
+    border: 0;
+    background-color: transparent;
+    color: orange;
+    font-size: large;
+}
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid orange;
+}
+.menu:hover .dropdown-menu {
+    display: block;
+}
+
+/* main styling */
+main {
+    padding: 2%;
+}
+
+/* footer styling */
+.footer {
+    padding: 1%;
+    border-top: 1px solid orange;
+}
+#main-footer {
+    padding-right: 3%;
+    padding-left: 3%;
+}
