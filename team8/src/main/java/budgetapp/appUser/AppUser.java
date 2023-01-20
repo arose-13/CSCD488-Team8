@@ -1,4 +1,4 @@
-package budgetapp.dppUser;
+package budgetapp.appUser;
 
 import java.sql.Date;
 import javax.json.*;
