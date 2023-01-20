@@ -2,14 +2,13 @@ package budgetapp.javaEmail;
 
 import java.util.*;
 import javax.mail.*;
-import javax.mail.internet.*;
 
 import budgetapp.appUser.AppUser;
 
 import javax.mail.Session;
 import javax.mail.Transport;
-import java.sql.*;
-import java.sql.Date;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class JavaMail {
   private String toEmail = "team.eight.noreply@gmail.com";
