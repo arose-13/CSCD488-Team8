@@ -2,6 +2,7 @@
 .vscode/
 .idea/
 .hours/
+.temp/
 team8/target/**
 
 # Ignore compiled files
