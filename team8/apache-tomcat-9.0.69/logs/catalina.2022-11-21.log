@@ -1,0 +1,363 @@
+21-Nov-2022 16:47:10.843 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.69
+21-Nov-2022 16:47:10.854 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 9 2022 18:43:47 UTC
+21-Nov-2022 16:47:10.855 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.69.0
+21-Nov-2022 16:47:10.855 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+21-Nov-2022 16:47:10.855 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+21-Nov-2022 16:47:10.856 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+21-Nov-2022 16:47:10.856 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Eclipse Foundation\jdk-17
+21-Nov-2022 16:47:10.856 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.3.1+2-LTS-6
+21-Nov-2022 16:47:10.857 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+21-Nov-2022 16:47:10.858 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:47:10.859 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:47:10.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69/conf/logging.properties
+21-Nov-2022 16:47:10.892 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+21-Nov-2022 16:47:10.892 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+21-Nov-2022 16:47:10.893 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+21-Nov-2022 16:47:10.893 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+21-Nov-2022 16:47:10.893 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:47:10.894 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:47:10.894 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69/temp
+21-Nov-2022 16:47:10.904 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
+21-Nov-2022 16:47:10.905 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+21-Nov-2022 16:47:10.905 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+21-Nov-2022 16:47:10.923 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
+21-Nov-2022 16:47:11.472 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:47:11.529 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1094] milliseconds
+21-Nov-2022 16:47:11.635 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+21-Nov-2022 16:47:11.635 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.69]
+21-Nov-2022 16:47:11.692 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+21-Nov-2022 16:47:12.486 SEVERE [main] org.apache.catalina.startup.HostConfig.deployWAR Error deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+	java.lang.IllegalStateException: Error starting child
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:729)
+		at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+		at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+		at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+		at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+		at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+		at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+		at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1617)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:318)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:423)
+		at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:366)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:943)
+		at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1393)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1383)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:916)
+		at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:265)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardService.startInternal(StandardService.java:430)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.startup.Catalina.start(Catalina.java:772)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:476)
+	Caused by: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/team8-0.1]]
+		at org.apache.catalina.util.LifecycleBase.handleSubClassException(LifecycleBase.java:440)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+		... 37 more
+	Caused by: java.lang.TypeNotPresentException: Type javax.ws.rs.Path not present
+		at java.base/sun.reflect.annotation.TypeNotPresentExceptionProxy.generateException(TypeNotPresentExceptionProxy.java:47)
+		at java.base/sun.reflect.annotation.AnnotationInvocationHandler.invoke(AnnotationInvocationHandler.java:89)
+		at jdk.proxy2/jdk.proxy2.$Proxy2.value(Unknown Source)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1870)
+		at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+		at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:986)
+		at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:303)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5127)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		... 38 more
+	Caused by: java.lang.ClassNotFoundException: javax.ws.rs.Path
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1412)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1220)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:467)
+		at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+		at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+		at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseSig(AnnotationParser.java:441)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassValue(AnnotationParser.java:427)
+		at java.base/sun.reflect.annotation.AnnotationParser.lambda$parseClassArray$0(AnnotationParser.java:715)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArrayElements(AnnotationParser.java:743)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassArray(AnnotationParser.java:714)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArray(AnnotationParser.java:527)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseMemberValue(AnnotationParser.java:352)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotation2(AnnotationParser.java:282)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations2(AnnotationParser.java:121)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations(AnnotationParser.java:73)
+		at java.base/java.lang.Class.createAnnotationData(Class.java:4068)
+		at java.base/java.lang.Class.annotationData(Class.java:4057)
+		at java.base/java.lang.Class.getAnnotation(Class.java:3940)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1855)
+		... 44 more
+21-Nov-2022 16:47:12.494 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war] has finished in [799] ms
+21-Nov-2022 16:47:12.497 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\docs]
+21-Nov-2022 16:47:12.893 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [111] milliseconds.
+21-Nov-2022 16:47:12.935 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\docs] has finished in [437] ms
+21-Nov-2022 16:47:12.935 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\examples]
+21-Nov-2022 16:47:13.686 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\examples] has finished in [751] ms
+21-Nov-2022 16:47:13.687 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\host-manager]
+21-Nov-2022 16:47:13.759 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\host-manager] has finished in [71] ms
+21-Nov-2022 16:47:13.759 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\manager]
+21-Nov-2022 16:47:13.834 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\manager] has finished in [75] ms
+21-Nov-2022 16:47:13.835 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\ROOT]
+21-Nov-2022 16:47:13.875 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\ROOT] has finished in [40] ms
+21-Nov-2022 16:47:13.883 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:47:14.034 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [2504] milliseconds
+21-Nov-2022 16:48:54.525 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/team8-0.1]
+21-Nov-2022 16:48:54.529 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:48:54.530 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:48:54.532 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:55:45.120 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+21-Nov-2022 16:55:45.564 SEVERE [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Error deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+	java.lang.IllegalStateException: Error starting child
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:729)
+		at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+		at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+		at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+		at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+		at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+		at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+	Caused by: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/team8-0.1]]
+		at org.apache.catalina.util.LifecycleBase.handleSubClassException(LifecycleBase.java:440)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+		... 24 more
+	Caused by: java.lang.TypeNotPresentException: Type javax.ws.rs.Path not present
+		at java.base/sun.reflect.annotation.TypeNotPresentExceptionProxy.generateException(TypeNotPresentExceptionProxy.java:47)
+		at java.base/sun.reflect.annotation.AnnotationInvocationHandler.invoke(AnnotationInvocationHandler.java:89)
+		at jdk.proxy2/jdk.proxy2.$Proxy2.value(Unknown Source)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1870)
+		at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+		at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:986)
+		at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:303)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5127)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		... 25 more
+	Caused by: java.lang.ClassNotFoundException: javax.ws.rs.Path
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1412)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1220)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:467)
+		at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+		at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+		at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseSig(AnnotationParser.java:441)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassValue(AnnotationParser.java:427)
+		at java.base/sun.reflect.annotation.AnnotationParser.lambda$parseClassArray$0(AnnotationParser.java:715)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArrayElements(AnnotationParser.java:743)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassArray(AnnotationParser.java:714)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArray(AnnotationParser.java:527)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseMemberValue(AnnotationParser.java:352)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotation2(AnnotationParser.java:282)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations2(AnnotationParser.java:121)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations(AnnotationParser.java:73)
+		at java.base/java.lang.Class.createAnnotationData(Class.java:4068)
+		at java.base/java.lang.Class.annotationData(Class.java:4057)
+		at java.base/java.lang.Class.getAnnotation(Class.java:3940)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1855)
+		... 31 more
+21-Nov-2022 16:55:45.567 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war] has finished in [448] ms
+21-Nov-2022 16:58:05.195 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+21-Nov-2022 16:58:05.195 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:58:05.224 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+21-Nov-2022 16:58:05.230 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.230 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.230 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:05.243 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.243 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.244 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:05.246 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.247 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.247 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:05.250 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.251 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.251 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:05.255 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.256 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.256 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:05.256 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:58:05.266 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:58:05.269 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 16:58:05.269 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 16:58:05.270 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 16:58:47.303 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.69
+21-Nov-2022 16:58:47.313 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 9 2022 18:43:47 UTC
+21-Nov-2022 16:58:47.314 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.69.0
+21-Nov-2022 16:58:47.314 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+21-Nov-2022 16:58:47.315 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+21-Nov-2022 16:58:47.316 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+21-Nov-2022 16:58:47.316 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Eclipse Foundation\jdk-17
+21-Nov-2022 16:58:47.317 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.3.1+2-LTS-6
+21-Nov-2022 16:58:47.318 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+21-Nov-2022 16:58:47.318 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:58:47.319 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:58:47.343 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69/conf/logging.properties
+21-Nov-2022 16:58:47.343 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+21-Nov-2022 16:58:47.344 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+21-Nov-2022 16:58:47.344 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+21-Nov-2022 16:58:47.344 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+21-Nov-2022 16:58:47.345 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:58:47.345 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69
+21-Nov-2022 16:58:47.346 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=c:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69/temp
+21-Nov-2022 16:58:47.353 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
+21-Nov-2022 16:58:47.354 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+21-Nov-2022 16:58:47.354 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+21-Nov-2022 16:58:47.363 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
+21-Nov-2022 16:58:47.835 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:58:47.882 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [961] milliseconds
+21-Nov-2022 16:58:47.970 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+21-Nov-2022 16:58:47.970 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.69]
+21-Nov-2022 16:58:48.005 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+21-Nov-2022 16:58:48.392 SEVERE [main] org.apache.catalina.startup.HostConfig.deployWAR Error deploying web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war]
+	java.lang.IllegalStateException: Error starting child
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:729)
+		at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+		at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+		at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+		at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+		at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+		at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+		at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1617)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:318)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:423)
+		at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:366)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:943)
+		at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1393)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1383)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:916)
+		at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:265)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardService.startInternal(StandardService.java:430)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.startup.Catalina.start(Catalina.java:772)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:476)
+	Caused by: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/team8-0.1]]
+		at org.apache.catalina.util.LifecycleBase.handleSubClassException(LifecycleBase.java:440)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+		... 37 more
+	Caused by: java.lang.TypeNotPresentException: Type javax.ws.rs.Path not present
+		at java.base/sun.reflect.annotation.TypeNotPresentExceptionProxy.generateException(TypeNotPresentExceptionProxy.java:47)
+		at java.base/sun.reflect.annotation.AnnotationInvocationHandler.invoke(AnnotationInvocationHandler.java:89)
+		at jdk.proxy2/jdk.proxy2.$Proxy2.value(Unknown Source)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1870)
+		at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+		at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:986)
+		at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:303)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5127)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		... 38 more
+	Caused by: java.lang.ClassNotFoundException: javax.ws.rs.Path
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1412)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1220)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:467)
+		at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+		at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+		at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseSig(AnnotationParser.java:441)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassValue(AnnotationParser.java:427)
+		at java.base/sun.reflect.annotation.AnnotationParser.lambda$parseClassArray$0(AnnotationParser.java:715)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArrayElements(AnnotationParser.java:743)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseClassArray(AnnotationParser.java:714)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseArray(AnnotationParser.java:527)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseMemberValue(AnnotationParser.java:352)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotation2(AnnotationParser.java:282)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations2(AnnotationParser.java:121)
+		at java.base/sun.reflect.annotation.AnnotationParser.parseAnnotations(AnnotationParser.java:73)
+		at java.base/java.lang.Class.createAnnotationData(Class.java:4068)
+		at java.base/java.lang.Class.annotationData(Class.java:4057)
+		at java.base/java.lang.Class.getAnnotation(Class.java:3940)
+		at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1855)
+		... 44 more
+21-Nov-2022 16:58:48.398 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\team8-0.1.war] has finished in [391] ms
+21-Nov-2022 16:58:48.400 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\docs]
+21-Nov-2022 16:58:48.799 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [131] milliseconds.
+21-Nov-2022 16:58:48.830 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\docs] has finished in [429] ms
+21-Nov-2022 16:58:48.830 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\examples]
+21-Nov-2022 16:58:49.493 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\examples] has finished in [663] ms
+21-Nov-2022 16:58:49.494 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\host-manager]
+21-Nov-2022 16:58:49.567 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\host-manager] has finished in [73] ms
+21-Nov-2022 16:58:49.568 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\manager]
+21-Nov-2022 16:58:49.638 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\manager] has finished in [70] ms
+21-Nov-2022 16:58:49.638 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\ROOT]
+21-Nov-2022 16:58:49.678 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\apache-tomcat-9.0.69-windows-x64\apache-tomcat-9.0.69\webapps\ROOT] has finished in [40] ms
+21-Nov-2022 16:58:49.686 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 16:58:49.818 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1935] milliseconds
+21-Nov-2022 17:04:22.281 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+21-Nov-2022 17:04:22.282 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 17:04:22.310 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+21-Nov-2022 17:04:22.317 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.317 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.319 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 17:04:22.327 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.328 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.328 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 17:04:22.332 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.332 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.333 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 17:04:22.338 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.338 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.338 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 17:04:22.342 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.342 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.343 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+21-Nov-2022 17:04:22.344 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 17:04:22.353 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+21-Nov-2022 17:04:22.356 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesObjectStreamClassCaches When running on Java 9 or later you need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+21-Nov-2022 17:04:22.357 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks When running on Java 9 or later you need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+21-Nov-2022 17:04:22.357 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets When running on Java 9 or later you need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
