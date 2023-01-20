@@ -8,10 +8,14 @@ public class JavaDBConnect {
     private static final String USERNAME = "sqluser";
     private static final String PASSWORD = "Team8Password";
 
-    public static void main(String[] args) {
+    public JavaDBConnect() {
         connectToDB();
         fetchAllUsers();
         closeDBConnection();
+    }
+    //sanity check
+    public static void main(String[] args) {
+        JavaDBConnect myConnection = new JavaDBConnect();
     }
 
     private static void connectToDB() {
