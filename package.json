@@ -1,0 +1,19 @@
+{
+  "name": "cscd488-team8",
+  "version": "1.0.0",
+  "description": "Spring 2022 Group Assignment",
+  "main": "password-recovery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nwnel-017/CSCD488-Team8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nwnel-017/CSCD488-Team8/issues"
+  },
+  "homepage": "https://github.com/nwnel-017/CSCD488-Team8#readme"
+}

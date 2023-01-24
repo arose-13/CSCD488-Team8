@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const homeButton = document.getElementById("backHome");
 
     homeButton.addEventListener("click", () => {
-        window.location.href="login.html";
+        window.location.href="../login.html";
     })
 
     createdCredentials.addEventListener("submit", (event) => {
