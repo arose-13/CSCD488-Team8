@@ -31,7 +31,6 @@ public class JavaMail {
 
   public static void main(String[] args) throws Exception {
     JavaMail myMail = new JavaMail("team.eight.noreply@gmail.com", "deleteAccount");
-    //JavaMail myMail = new JavaMail("nathannelsondude@gmail.com", "deleteAccount");
     try {
       if (myMail.type == "default") {
         myMail.setMessage("default subject", "default body");
