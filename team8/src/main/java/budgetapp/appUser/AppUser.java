@@ -26,31 +26,6 @@ public class AppUser {
         //this.id = UUID.randomUUID();
     }
 
-    // public String hash(String pword) {
-    //     String hashedPassword = null;
-    //     try {
-    //         //Create MessageDigest instancce for MD5
-    //         MessageDigest md = MessageDigest.getInstance("MD5");
-
-    //         //Add password bytes to digest
-    //         md.update(pword.getBytes());
-
-    //         //Get the hash's bytes
-    //         byte[] bytes = md.digest();
-
-    //         //bytes[] has bytes in decimal format, so we convert it to hexadecimal
-    //         StringBuilder sb = new StringBuilder();
-    //         for (int i = 0; i < bytes.length; i++) {
-    //             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-    //         }
-    //         //Get complete hashed password in hex format
-    //         hashedPassword = sb.toString();
-    //     } catch (NoSuchAlgorithmException e) {
-    //         e.printStackTrace();
-    //     }
-    //     return hashedPassword;
-    // }
-
     public void setuName(String uname) {
         this.uName = uname;
     }
@@ -92,6 +67,31 @@ public class AppUser {
         //Used for testing to get information about the AppUser
         return this.uName + ": " + "email: " + this.uEmail + " hashed password: " + this.uPassword; // + " id: " + this.id;
     }
+
+    // public String hash(String pword) {
+    //     String hashedPassword = null;
+    //     try {
+    //         //Create MessageDigest instancce for MD5
+    //         MessageDigest md = MessageDigest.getInstance("MD5");
+
+    //         //Add password bytes to digest
+    //         md.update(pword.getBytes());
+
+    //         //Get the hash's bytes
+    //         byte[] bytes = md.digest();
+
+    //         //bytes[] has bytes in decimal format, so we convert it to hexadecimal
+    //         StringBuilder sb = new StringBuilder();
+    //         for (int i = 0; i < bytes.length; i++) {
+    //             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+    //         }
+    //         //Get complete hashed password in hex format
+    //         hashedPassword = sb.toString();
+    //     } catch (NoSuchAlgorithmException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return hashedPassword;
+    // }
 
     // public static void main(String[] args) throws Exception {
     //     AppUser u1 = new AppUser("monkey", "password123", "monkey@gmail.com");

@@ -18,6 +18,7 @@
 
     <dependencies>
 
+
         <!-- mySQL Dependencies -->
 
         <dependency>
@@ -55,9 +56,6 @@
 
         <!-- RESTful API Controller Class using Jersey Dependencies -->
 
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-
-
         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.bundles/project -->
         <dependency>
             <groupId>org.glassfish.jersey.bundles</groupId>
@@ -66,8 +64,6 @@
             <type>pom</type>
         </dependency>
 
-
-                        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
                 <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.bundles/jaxrs-ri -->
         <dependency>
             <groupId>org.glassfish.jersey.bundles</groupId>
@@ -123,8 +119,6 @@
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>2.35</version>
         </dependency>
-
-
 
         <!-- These were incuded by default -->
 
