@@ -1,7 +1,6 @@
 package budgetapp.appUser;
 
 import java.sql.Date;
-import javax.json.*;
 
 // import java.util.HashMap;
 // import java.util.UUID;
@@ -9,21 +8,36 @@ import javax.json.*;
 // import java.security.NoSuchAlgorithmException;
 
 public class AppUser {
-    //private String id;
     private String uName;
     private String uPassword;
     private String uEmail;
     private Date uDate;
-    private Json data;
+    private UserData data = new UserData();
 
     public AppUser() { }
 
-    public AppUser(final String uname, final String password, final String email, final Date date) { 
-        this.setuName(uname);
-        this.setPassword(password);
-        this.setEmail(email);
-        this.setuDate(date);
-        //this.id = UUID.randomUUID();
+    public AppUser(final String uname, final String password, final String email, final String date) throws Exception { 
+        setuName(uname);
+        setPassword(password);
+        setEmail(email);
+        java.util.Date d = new java.util.Date();
+        java.sql.Date agreeDate = new java.sql.Date(d.getTime());
+        if(agreeDate.toString().compareTo(date)==0) {
+            setuDate(agreeDate);
+        }
+        else{
+            throw new Exception("date submitted doesn't agree with sys date");
+        }
+    }
+
+    public AppUser(final String uname, final String password, final String email, final String date, double expected) throws Exception {
+        this(uname, password, email, date);
+        data.setExpected(expected);
+    }
+
+    public AppUser(final String uname, final String password, final String email, final String date, double expected, double actual) throws Exception {
+        this(uname, password, email, date, expected);
+        data.setActual(actual);
     }
 
     public void setuName(String uname) {
@@ -57,6 +71,11 @@ public class AppUser {
     public void setuDate(Date uDate) {
         this.uDate = uDate;
     }
+
+    public UserData getData() {
+        return data;
+    }
+
 
     // public String getId() {
     //     return this.id;

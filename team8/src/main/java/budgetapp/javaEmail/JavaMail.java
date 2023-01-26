@@ -38,9 +38,9 @@ public class JavaMail {
     java.util.Date d = new java.util.Date();
     System.out.println(d);
     java.sql.Date date = new java.sql.Date(d.getTime());
-    System.out.println(date);
+    String subDate = date.toString();
     
-    AppUser test = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", date);
+    AppUser test = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", subDate);
     JavaMail myMail = new JavaMail(test);
     String verificationCode = myMail.sendAuthenticationEmail(test);
     System.out.println(verificationCode);
