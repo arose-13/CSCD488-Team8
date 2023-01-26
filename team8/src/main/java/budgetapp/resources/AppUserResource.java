@@ -13,10 +13,11 @@ public class AppUserResource {
     @GET
     @Path("/make")
     @Produces(MediaType.APPLICATION_JSON)
-    public AppUser makeUser() {
+    public AppUser makeUser() throws Exception {
         java.util.Date d = new java.util.Date();
         java.sql.Date date = new java.sql.Date(d.getTime());
-        AppUser newUser = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", date);
+        String subDate = date.toString();
+        AppUser newUser = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", subDate);
         return newUser;
     }
 
