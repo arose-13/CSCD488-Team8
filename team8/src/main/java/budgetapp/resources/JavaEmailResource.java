@@ -12,7 +12,7 @@ import budgetapp.javaEmail.*;
 public class JavaEmailResource {
 
     @GET
-    @Path("/emailTest")
+    @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     public String javaEmailTest() throws Exception {
         java.util.Date d = new java.util.Date();

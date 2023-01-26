@@ -11,7 +11,7 @@ import budgetapp.appUser.AppUser;
 public class AppUserResource {
     
     @GET
-    @Path("/make")
+    @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     public AppUser makeUser() throws Exception {
         java.util.Date d = new java.util.Date();
