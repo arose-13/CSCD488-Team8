@@ -1,17 +1,22 @@
 package budgetapp.databaseConnection;
 
 import java.sql.*;
+import java.util.Scanner;
+import java.util.UUID;
+import java.util.Date;
 
 public class JavaDBConnect {
     private static Connection connection;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/budgetappuser";
     private static final String USERNAME = "sqluser";
     private static final String PASSWORD = "Team8Password";
+    private static Scanner scanner = new Scanner(System.in);
 
     public JavaDBConnect() {
         connectToDB();
         fetchAllUsers();
         closeDBConnection();
+        scanner.close();
     }
     //sanity check
     public static void main(String[] args) {
@@ -40,6 +45,81 @@ public class JavaDBConnect {
         }
     }
 
+    private static void createUser(int verification) { //just an idea to check for verification here
+        try {
+            Statement statement = connection.createStatement();
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter your username: ");
+            String username = scanner.nextLine();
+            System.out.println("Enter your password: ");
+            String password = scanner.nextLine();
+            System.out.println("Enter your email: ");
+            String email = scanner.nextLine();
+            scanner.close();
+
+            UUID id = UUID.randomUUID();
+            Date currentDate = new Date();
+
+            statement.executeUpdate("INSERT INTO `appusertable` VALUES ('"+id+"','"+username+"','"+password+"','"+email+"','"+currentDate+"',"+verification+",'USER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)");
+
+        } catch (SQLException e) {
+            System.out.println("Error creating a user: " + e.getMessage());
+        }
+    }
+
+    private static void changePassword() { // could eventually send out verification emails prior to changing a field 
+        try{ 
+            Statement statement = connection.createStatement();
+            String user = identifyUser();
+            System.out.println("Enter your new password: ");
+            String newPass = scanner.nextLine();
+            statement.executeUpdate("UPDATE `appusertable` SET password = '"+newPass+"' WHERE userName = '"+user+"'");
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
+        }
+    }
+
+    private static void changeUserName() {
+        try{ 
+            Statement statement = connection.createStatement();
+            String user = identifyUser();
+            System.out.println("Enter your new username: ");
+            String newUName = scanner.nextLine();
+            statement.executeUpdate("UPDATE `appusertable` SET password = '"+newUName+"' WHERE userName = '"+user+"'");
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
+        }
+    }
+
+    private static void changeEmail() {
+        try{ 
+            Statement statement = connection.createStatement();
+            String user = identifyUser();
+            System.out.println("Enter your new username: ");
+            String newEmail = scanner.nextLine();
+            statement.executeUpdate("UPDATE `appusertable` SET password = '"+newEmail+"' WHERE userName = '"+user+"'");
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
+        }
+    }
+
+    private static void deleteUser() {
+        try{
+            Statement statement = connection.createStatement();
+            String user = identifyUser();
+            statement.executeUpdate("DELETE FROM `appusertable` WHERE userName = '"+user+"'");
+        } catch (SQLException e) {
+            System.out.println("Error deleting a user: " + e.getMessage());
+        }
+    }
+
+    private static String identifyUser() { // duplicate code made into a method
+        System.out.println("Enter your username: ");
+        String user = scanner.nextLine();
+        return user;
+    }
+
     private static void closeDBConnection() {
         try {
             connection.close();
@@ -48,8 +128,6 @@ public class JavaDBConnect {
         }
     }
 }
-    
-
 
 
     // //Sanity Check with Java -> mysql db connection
