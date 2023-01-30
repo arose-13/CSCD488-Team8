@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const forgotPasswordButton = document.getElementById("forgotPassword");
 
     createAccountButton.addEventListener("click", function () {
-        window.location.href = "html/signup.html";
+        window.location.href = "signup.php";
     })
 
     forgotPasswordButton.addEventListener("click", function () {
-        window.location.href = "html/passwordrecovery.html";
+        window.location.href = "passwordrecovery.php";
     })
 
     loginForm.addEventListener("submit", (e) => {
