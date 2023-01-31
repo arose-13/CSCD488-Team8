@@ -24,3 +24,11 @@ Spring-Winter 2022 Group Assignment
   Java version: 18.0.1.1, vendor: Oracle Corporation, runtime: C:\Program Files\Eclipse Foundation\jdk-18  
   Default locale: en_US, platform encoding: UTF-8  
   OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"  
+
+## To launch Maven
+* Install the Community Server Connectors VSCode extension
+* Create new tomcat server by selecting the folder `apache-tomcat-9.0.69`
+* Navigate to `team8`
+* Execute the command `mvn clean install`
+* Add a deployment to the Tomcat server, and select the file `team8-0.1.war` within the `/team8/target` directory
+* Start the server
