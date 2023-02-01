@@ -77,18 +77,30 @@ public class JavaDBConnect {
     }
 
     public AppUser createNewUser(AppUser newUser) {
-        createNewUser(newUser.getuName(), newUser.getPassword(), newUser.getEmail(), newUser.getuDate());
+        createNewUser(newUser.getuName(), newUser.getPassword(), newUser.getEmail(), newUser.getuDate(), newUser.getData());
         return newUser;
     }
 
-    private void createNewUser(String userName, String password, String email, Date createDate) {
+    private void createNewUser(String userName, String password, String email, Date createDate, UserData[] data) {
         try {
-            String sql = "INSERT INTO `appusertable`(userName, password, email, userCreationDate) VALUES (?,?,?,?);";
+            String sql = "INSERT INTO `appusertable`(m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, userName, password, email, userCreationDate,) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, userName);
-            pstmt.setString(2, password);
-            pstmt.setString(3, email);
-            pstmt.setObject(4, createDate);
+            pstmt.setObject(1, data[0]);
+            pstmt.setObject(2, data[1]);
+            pstmt.setObject(3, data[2]);
+            pstmt.setObject(4, data[3]);
+            pstmt.setObject(5, data[4]);
+            pstmt.setObject(6, data[5]);
+            pstmt.setObject(7, data[6]);
+            pstmt.setObject(8, data[7]);
+            pstmt.setObject(9, data[8]);
+            pstmt.setObject(10, data[9]);
+            pstmt.setObject(11, data[10]);
+            pstmt.setObject(12, data[11]);
+            pstmt.setString(13, userName);
+            pstmt.setString(14, password);
+            pstmt.setString(15, email);
+            pstmt.setObject(16, createDate);
             pstmt.executeUpdate(sql);
             closeDBConnection();
         } catch (SQLException e) {
