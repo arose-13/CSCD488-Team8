@@ -27,8 +27,10 @@ Spring-Winter 2022 Group Assignment
 
 ## To launch Maven
 * Install the Community Server Connectors VSCode extension
-* Create new tomcat server by selecting the folder `apache-tomcat-9.0.69`
-* Navigate to `team8`
+* Copy the folder `apache-tomcat-9.0.69` to your C drive.
+* Create a new tomcat server by right clicking the "Community Server Connectors" button, select "No, use server on disk", and selecting the folder `apache-tomcat-9.0.69` on your C drive.
+* Navigate to `team8` in the terminal
 * Execute the command `mvn clean install`
-* Add a deployment to the Tomcat server, and select the file `team8-0.1.war` within the `/team8/target` directory
-* Start the server
+* Add a deployment to the Tomcat server by right-clicking on the server, select "Add Deployment", select "File", and then select the file `team8-0.1.war` within the `/team8/target` directory
+* Right click on the server and select "Start Server"
+* Navigate to "localhost:8080/team8-0.1/" to get the the web app
