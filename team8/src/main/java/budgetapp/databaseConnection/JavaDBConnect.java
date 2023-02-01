@@ -35,7 +35,7 @@ public class JavaDBConnect {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from `appusertable`");
             while (resultSet.next()) { //This needs to be changed to be useful to the front end
-                System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4));
+                System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4)); //and not leak passwords
             }
             closeDBConnection();
         } catch (SQLException e) {
