@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Home Page MAN</title>
-    <link rel="stylesheet" href="css/default.css" type="text/css">
+    <title>Home Page</title>
+    <link rel = "stylesheet" href = "css/default.css" type = "text/css">
     <?php include 'components/head.html'; ?>
 </head>
 
@@ -13,8 +13,8 @@
 
     <main>
 
-        <p>Welcome to the homepage, DUDE!</p>
-
+        <p>Welcome to the homepage!</p>
+        
     </main>
 
     <?php include 'components/main-footer.html'; ?>

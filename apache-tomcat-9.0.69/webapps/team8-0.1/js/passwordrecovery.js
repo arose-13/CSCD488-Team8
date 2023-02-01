@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const homeButton = document.getElementById("backHome");
 
     homeButton.addEventListener("click", () => {
-        window.location.href = "../login.html"; //go back home
+        window.location.href = "login.html"; //go back home
     })
 
     recoveryForm.addEventListener("submit", (event) => {
