@@ -1,6 +1,7 @@
 package budgetapp.appUser;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 // import java.util.HashMap;
 // import java.util.UUID;
@@ -12,32 +13,41 @@ public class AppUser {
     private String uPassword;
     private String uEmail;
     private Date uDate;
-    private UserData data = new UserData();
+    private UserData [] data = new UserData[12];
 
-    public AppUser() { }
+    public AppUser() {
+        for (int i = 0; i < data.length; i++) {
+            if(data[i] == null) {
+                data[i] = new UserData();
+            }
+        }
+     }
 
     public AppUser(final String uname, final String password, final String email, final String date) throws Exception { 
+        this();
         setuName(uname);
         setPassword(password);
         setEmail(email);
-        java.util.Date d = new java.util.Date();
-        java.sql.Date agreeDate = new java.sql.Date(d.getTime());
-        if(agreeDate.toString().compareTo(date)==0) {
+        long mills = System.currentTimeMillis();
+        java.sql.Date agreeDate = new java.sql.Date(mills);
+        if(String.valueOf(agreeDate).compareTo(date) == 0) {
             setuDate(agreeDate);
         }
         else{
-            throw new Exception("date submitted doesn't agree with sys date");
+            throw new Exception("date submitted doesn't agree with sys date\n"+date+"\n"+agreeDate);
         }
     }
 
     public AppUser(final String uname, final String password, final String email, final String date, double expected) throws Exception {
         this(uname, password, email, date);
-        data.setExpected(expected);
+        int i = extractDate(date);
+        data[i].setExpected(expected);
     }
 
     public AppUser(final String uname, final String password, final String email, final String date, double expected, double actual) throws Exception {
         this(uname, password, email, date, expected);
-        data.setActual(actual);
+        int i = extractDate(date);
+        data[i].setActual(actual);
     }
 
     public void setuName(String uname) {
@@ -72,20 +82,32 @@ public class AppUser {
         this.uDate = uDate;
     }
 
-    public UserData getData() {
+    public UserData[] getData() {
         return data;
     }
 
+    public int extractDate(String dateSQLFormat) {
+        java.sql.Date dat = java.sql.Date.valueOf(dateSQLFormat);
+        return extractDate(dat);
+    }
 
-    // public String getId() {
-    //     return this.id;
-    // }
+    public int extractDate(Date dat) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        int month = cal.get(Calendar.MONTH);
+        return month;
+    }
 
+
+    
     @Override
     public String toString() {
         //Used for testing to get information about the AppUser
         return this.uName + ": " + "email: " + this.uEmail + " hashed password: " + this.uPassword; // + " id: " + this.id;
     }
+    // public String getId() {
+    //     return this.id;
+    // }
 
     // public String hash(String pword) {
     //     String hashedPassword = null;
