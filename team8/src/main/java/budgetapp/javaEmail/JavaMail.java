@@ -35,12 +35,11 @@ public class JavaMail {
   //more sanity check
   public static void main(String[] args) throws Exception {
 
-    java.util.Date d = new java.util.Date();
-    System.out.println(d);
-    java.sql.Date date = new java.sql.Date(d.getTime());
-    String subDate = date.toString();
+    long d = System.currentTimeMillis();
+    java.sql.Date date = new java.sql.Date(d);
+    String inputDate = String.valueOf(date);
     
-    AppUser test = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", subDate);
+    AppUser test = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", inputDate);
     JavaMail myMail = new JavaMail(test);
     String verificationCode = myMail.sendAuthenticationEmail(test);
     System.out.println(verificationCode);

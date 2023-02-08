@@ -15,7 +15,9 @@ public class JavaDBResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String testJDB() {
         JavaDBConnect myDBConnection = new JavaDBConnect();
-        return "";
+        System.out.println("ok");
+        myDBConnection.fetchAllUsers();
+        return "Success?";
     }
 
     @GET

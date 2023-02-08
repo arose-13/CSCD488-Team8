@@ -1,6 +1,7 @@
 package budgetapp.appUser;
 
 public class UserData {
+    
     private double expected;
     private double actual;
 
@@ -36,10 +37,6 @@ public class UserData {
         this(expected);
         setActual(actual);
     }
-
-
-    
-
 
 
     public double getExpected() {

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `budgetappuser` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `budgetappuser`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: budgetappuser
@@ -32,20 +30,20 @@ CREATE TABLE `appusertable` (
   `userCreationDate` date NOT NULL,
   `accountActivated` tinyint NOT NULL DEFAULT '1',
   `userRole` enum('USER','ADMIN') NOT NULL DEFAULT 'USER',
-  `m01` json DEFAULT NULL,
-  `m02` json DEFAULT NULL,
-  `m03` json DEFAULT NULL,
-  `m04` json DEFAULT NULL,
-  `m05` json DEFAULT NULL,
-  `m06` json DEFAULT NULL,
-  `m07` json DEFAULT NULL,
-  `m08` json DEFAULT NULL,
-  `m09` json DEFAULT NULL,
-  `m10` json DEFAULT NULL,
-  `m11` json DEFAULT NULL,
-  `m12` json DEFAULT NULL,
+  `m01` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m02` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m03` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m04` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m05` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m06` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m07` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m08` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m09` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m10` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m11` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
+  `m12` json DEFAULT (_utf8mb4'{"actual":0.0,"expected":0.0}'),
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +52,7 @@ CREATE TABLE `appusertable` (
 
 LOCK TABLES `appusertable` WRITE;
 /*!40000 ALTER TABLE `appusertable` DISABLE KEYS */;
-INSERT INTO `appusertable` VALUES (1,'testUser','notHashedPW','testEmail@email.com','0000-00-00',1,'USER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'testUser2','notHashedPW2','testEmail@email.com2','0000-00-00',1,'USER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `appusertable` VALUES (4,'testUser1','notHashedPW1','anotherEmail1@email.com','0000-00-00',1,'USER','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}'),(5,'testUser2','notHashedPW2','testEmail2@email.com','0000-00-00',1,'USER','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}'),(6,'testUser3','notHashedPW3','yetAnotherEmail3@email.com','0000-00-00',1,'USER','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}'),(7,'testUser4','notHashedPW4','AnotherEmail4@email.com','0000-00-00',1,'USER','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}','{\"actual\": 0.0, \"expected\": 0.0}');
 /*!40000 ALTER TABLE `appusertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -67,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-13 12:44:51
+-- Dump completed on 2023-01-31 16:32:25

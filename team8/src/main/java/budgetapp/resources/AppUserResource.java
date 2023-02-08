@@ -14,10 +14,11 @@ public class AppUserResource {
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     public AppUser makeUser() throws Exception {
-        java.util.Date d = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(d.getTime());
-        String subDate = date.toString();
-        AppUser newUser = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", subDate);
+        long mills = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(mills);
+        String inputDate = String.valueOf(date);
+        AppUser newUser = new AppUser("testName", "testPassNotHash", "team.eight.noreply@gmail.com", inputDate, 15.15, 10.10);
+        
         return newUser;
     }
 
