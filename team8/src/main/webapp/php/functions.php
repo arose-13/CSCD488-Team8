@@ -8,9 +8,11 @@ function usernameRegex(string $username) {
     return true;
 }
 
-function passwordHash(string $password) {
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    return $hash;
-}
+// DON'T USE THIS
+// Passwords shoud never be assigned to a variable. Refer to this to know how to hash passwords.
+// function passwordHash(string $password) {
+//     $hash = password_hash($password, PASSWORD_DEFAULT);
+//     return $hash;
+// }
 
 ?>
