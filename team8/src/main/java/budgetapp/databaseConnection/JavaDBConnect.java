@@ -83,84 +83,153 @@ public class JavaDBConnect {
 
     private void createNewUser(String userName, String password, String email, Date createDate, UserData[] data) {
         try {
-            String sql = "INSERT INTO `appusertable`(m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, userName, password, email, userCreationDate,) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setObject(1, data[0]);
-            pstmt.setObject(2, data[1]);
-            pstmt.setObject(3, data[2]);
-            pstmt.setObject(4, data[3]);
-            pstmt.setObject(5, data[4]);
-            pstmt.setObject(6, data[5]);
-            pstmt.setObject(7, data[6]);
-            pstmt.setObject(8, data[7]);
-            pstmt.setObject(9, data[8]);
-            pstmt.setObject(10, data[9]);
-            pstmt.setObject(11, data[10]);
-            pstmt.setObject(12, data[11]);
-            pstmt.setString(13, userName);
-            pstmt.setString(14, password);
-            pstmt.setString(15, email);
-            pstmt.setObject(16, createDate);
-            pstmt.executeUpdate(sql);
-            closeDBConnection();
+            //check if user already exits
+            if (countSearchResults(userName, email) == 0) {
+                String sql = "INSERT INTO `appusertable`(m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, userName, password, email, userCreationDate,) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setObject(1, data[0]);
+                pstmt.setObject(2, data[1]);
+                pstmt.setObject(3, data[2]);
+                pstmt.setObject(4, data[3]);
+                pstmt.setObject(5, data[4]);
+                pstmt.setObject(6, data[5]);
+                pstmt.setObject(7, data[6]);
+                pstmt.setObject(8, data[7]);
+                pstmt.setObject(9, data[8]);
+                pstmt.setObject(10, data[9]);
+                pstmt.setObject(11, data[10]);
+                pstmt.setObject(12, data[11]);
+                pstmt.setString(13, userName);
+                pstmt.setString(14, password);
+                pstmt.setString(15, email);
+                pstmt.setObject(16, createDate);
+                pstmt.executeUpdate(sql);
+                closeDBConnection();
+            } else {
+                System.out.println("User already exists");
+            }
         } catch (SQLException e) {
             System.out.println("Error creating a user: " + e.getMessage());
             closeDBConnection();
         }
     }
 
-    public void changePassword(String userName, String newPass) { // could eventually send out verification emails prior to changing a field 
-        try{ 
-            String sql = "UPDATE `appusertable` SET password = + ? + WHERE userName = ?";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, newPass);
-            pstmt.setString(2, userName);
-            pstmt.executeUpdate(sql);
-            closeDBConnection();
-        } catch (SQLException e) {
-            System.out.println("Error changing password: " + e.getMessage());
-            closeDBConnection();
-        }
-    }
-
-    public void changeUserName(String userName, String newUName) {
-        try{ 
-            String sql = "UPDATE `appusertable` SET userName = + ? + WHERE userName = ?";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, newUName);
-            pstmt.setString(2, userName);
-            pstmt.executeUpdate();
-            closeDBConnection();
-        } catch (SQLException e) {
-            System.out.println("Error changing password: " + e.getMessage());
-            closeDBConnection();
-        }
-    }
-
-    public void changeEmail(String userName, String newEmail) {
-        try{ 
-            String sql = "UPDATE `appusertable` SET email = + ? + WHERE userName = ?";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, newEmail);
-            pstmt.setString(2, userName);
-            pstmt.executeUpdate(sql);
-            closeDBConnection();
-        } catch (SQLException e) {
-            System.out.println("Error changing password: " + e.getMessage());
-            closeDBConnection();
-        }
-    }
-
-    public void deleteUser(String userName) {
+    public void changePassword(String userName, String newPass, String email) { // could eventually send out verification emails prior to changing a field 
         try{
-            String sql = "DELETE FROM `appusertable` WHERE userName = ?";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, userName);
-            pstmt.executeUpdate(sql);
+            if (countSearchResults(userName, email) == 1) {
+                String sql = "UPDATE `appusertable` SET password = + ? + WHERE userName = ? AND email = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, newPass);
+                pstmt.setString(2, userName);
+                pstmt.setString(3, email);
+                pstmt.executeUpdate(sql);
+                closeDBConnection();
+            } else {
+                System.out.println("User doesn't exist or has repeated entries");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
             closeDBConnection();
+        }
+    }
+
+    public void changeUserName(String userName, String newUName, String email) {
+        try{ 
+            if (countSearchResults(userName, email) == 1) {
+                String sql = "UPDATE `appusertable` SET userName = + ? + WHERE userName = ? AND email = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, newUName);
+                pstmt.setString(2, userName);
+                pstmt.setString(3, email);
+                pstmt.executeUpdate();
+                closeDBConnection();
+            } else {
+                System.out.println("User doesn't exist or has repeated entries");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
+            closeDBConnection();
+        }
+    }
+
+    public void changeEmail(String userName, String newEmail, String email) {
+        try{ 
+            if (countSearchResults(userName, email) == 1) {
+                String sql = "UPDATE `appusertable` SET email = + ? + WHERE userName = ? AND email = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, newEmail);
+                pstmt.setString(2, userName);
+                pstmt.setString(3, email);
+                pstmt.executeUpdate(sql);
+                closeDBConnection();
+            } else {
+                System.out.println("User doesn't exist or has repeated entries");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error changing password: " + e.getMessage());
+            closeDBConnection();
+        }
+    }
+
+    public void deleteUser(String userName, String email) {
+        try{
+            if (countSearchResults(userName, email) == 1) {
+                String sql = "DELETE FROM `appusertable` WHERE userName = ? AND email = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, userName);
+                pstmt.setString(2, email);
+                pstmt.executeUpdate(sql);
+                closeDBConnection();
+            } else {
+                System.out.println("User doesn't exist or has repeated entries");
+            }
         } catch (SQLException e) {
             System.out.println("Error deleting a user: " + e.getMessage());
             closeDBConnection();
+        }
+    }
+
+    public AppUser createAppUser(String userName, String email) {
+        try {
+            AppUser newUser = new AppUser();
+            if (countSearchResults(userName, email) == 1) {
+                String sql = "SELECT password, userCreationDate FROM `appusertable` WHERE userName = ? AND email = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                ResultSet resultSet = pstmt.executeQuery();
+                if (resultSet.next()) {
+                    String pWord = resultSet.getString("password");
+                    //Date date = resultSet.getDate("userCreationDate");
+
+                    newUser.setuName(userName);
+                    newUser.setPassword(pWord);
+                    newUser.setEmail(email);
+                    //newUser.setuDate(date); java.util.date is not compatible with java.sql.date
+                }
+            } else {
+                System.out.println("User doesn't exist or has repeated entries");
+            }
+            return newUser;
+        } catch (SQLException e) {
+            System.out.println("Error creating an AppUser object: " + e.getMessage());
+            return null;
+        }
+    }
+
+    //method takes userName and email and returns the count of search results
+    public int countSearchResults(String userName, String email) {
+        try {
+            String sql = "SELECT COUNT(*) FROM `appusertable` WHERE userName = ? AND email = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, userName);
+            pstmt.setString(2, email);
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+            return 0;
+        } catch (SQLException e) {
+            System.out.println("Unable to process ResultSet: " + e.getMessage());
+            return 0;
         }
     }
 
