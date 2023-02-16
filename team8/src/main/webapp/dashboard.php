@@ -35,7 +35,8 @@
 
     <main>
 
-        <h1>Welcome<?php $fname ?></h1>
+        <!-- <h1>Welcome<?php $fname ?></h1> -->
+        <?php include 'components/app-dashboard.html' ?>
 
         <!-- Display income -->
         <?php

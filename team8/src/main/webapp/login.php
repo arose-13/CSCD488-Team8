@@ -20,13 +20,13 @@
             <label for="password">Password: </label><br>
             <input type="text" id="password" name="password"><br>
             <input type="submit" name="Login" value="press to login" id="login-form-submit"><br><br>
-            <!-- <a href="#" id="forgotPassword">Forgot password?</a><br> -->
             <button type="button" id="forgotPassword">Forgot password?</button>
         </form>
         <br><br>
         <button type="button" id="createAccount">Don't Have an Account?</button>
     </main>
+    
 
-    <?php include 'components/main-footer.html'; ?>
+    <?php include 'components/main-footer.html';?>
 
 </body>

@@ -14,6 +14,16 @@ html, body {
 .header .logo {
     margin-right: 25px;
 }
+.dash-banner {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    width: 100%;
+    border:2px;
+    background-color: grey;
+    padding: 2px;
+    margin: 0px;
+}
 
 /* Application header styling */
 #app-header .menu .dropdown-menu ul li {
