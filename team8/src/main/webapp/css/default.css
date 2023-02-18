@@ -1,4 +1,5 @@
 html, body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -8,12 +9,14 @@ html, body {
 .header {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid rgb(255, 186, 49);
     padding: 1%;
 }
 .header .logo {
     margin-right: 25px;
 }
+
+/* Dashboard styling */
 .dash-banner {
     display: flex;
     justify-content: space-around;
@@ -23,6 +26,36 @@ html, body {
     background-color: grey;
     padding: 2px;
     margin: 0px;
+}
+.dashboard-grid {
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.dashboard-grid .grid-section {
+    border: solid 1px rgb(255, 186, 49);
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.dashboard-grid .grid-section .grid-section-header {
+    width: 100%;
+    color: white;
+    font-size: large;
+    background-color: rgb(255, 186, 49);
+}
+.dashboard-grid .grid-section .grid-section-body {
+    width: 100%;
+    padding: 5%;
+}
+#month-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 /* Application header styling */
@@ -54,7 +87,7 @@ html, body {
 .menu button {
     border: 0;
     background-color: transparent;
-    color: orange;
+    color: rgb(255, 186, 49);
     font-size: large;
 }
 .dropdown-menu {
@@ -62,7 +95,7 @@ html, body {
     display: none;
     padding: 10px;
     background-color: white;
-    border: 1px solid orange;
+    border: 1px solid rgb(255, 186, 49);
 }
 .menu:hover .dropdown-menu {
     display: block;
@@ -76,7 +109,7 @@ main {
 /* footer styling */
 .footer {
     padding: 1%;
-    border-top: 1px solid orange;
+    border-top: 1px solid rgb(255, 186, 49);
 }
 #main-footer {
     padding-right: 3%;
