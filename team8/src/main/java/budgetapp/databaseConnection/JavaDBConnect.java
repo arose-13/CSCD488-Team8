@@ -198,12 +198,13 @@ public class JavaDBConnect {
                 ResultSet resultSet = pstmt.executeQuery();
                 if (resultSet.next()) {
                     String pWord = resultSet.getString("password");
-                    //Date date = resultSet.getDate("userCreationDate");
+                    Date utilDate = resultSet.getDate("userCreationDate");
 
                     newUser.setuName(userName);
                     newUser.setPassword(pWord);
                     newUser.setEmail(email);
-                    //newUser.setuDate(date); java.util.date is not compatible with java.sql.date
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    newUser.setuDate(sqlDate);
                 }
             } else {
                 System.out.println("User doesn't exist or has repeated entries");
