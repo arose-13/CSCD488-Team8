@@ -1,4 +1,5 @@
 html, body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -8,11 +9,121 @@ html, body {
 .header {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid rgb(255, 186, 49);
     padding: 1%;
 }
 .header .logo {
     margin-right: 25px;
+}
+
+/* Dashboard styling */
+.dash-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style-type: none;
+    width: 100%;
+    height: 50px;
+    border:2px;
+    background-color: lightblue;
+    padding: 2px;
+    margin: 0px;
+}
+.dashboard-grid {
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.dashboard-grid .grid-section {
+    border: solid 1px rgb(255, 186, 49);
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.dashboard-grid .grid-section .grid-section-header {
+    width: 100%;
+    color: white;
+    font-size: large;
+    background-color: rgb(255, 186, 49);
+}
+.dashboard-grid .grid-section .grid-section-body {
+    width: 100%;
+    padding: 5%;
+}
+.rounded-container {
+    display: flex;
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: rgb(255, 186, 49);
+    width: 90%;
+}
+.data-container {
+    margin: auto;
+    align-self: center;
+}
+#net-income {
+    background-color: rgb(14, 170, 82);
+}
+#user-message {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    margin-top: 8vh;
+    font-size: 20px;
+}
+#pie-chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+    min-height: 30vh;
+    border: 2px solid black;
+    width: 80%;
+    align-items: center;
+}
+.x-box {
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    background-color: lightblue;
+    background:repeating-conic-gradient(
+        from 0deg,
+        #ff264a 0deg 20deg,
+        #eedc12 20deg 120deg,
+        #12CBC4 120deg 228deg,
+        rgb(22, 185, 22) 228deg 300deg,
+        rgb(126, 35, 229) 300deg 360deg
+    );
+}
+.x-box-cont {
+    font-size: 15px;
+}
+.x-box-cont h1{
+    font-size: 15px;
+}
+.x-box-cont strong{
+    display: block;
+    margin-bottom: 5px;
+}
+#month-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#income {
+    width: 50%;
+    align-items: center;
+}
+#expenses {
+    width: 50%;
 }
 
 /* Application header styling */
@@ -44,7 +155,7 @@ html, body {
 .menu button {
     border: 0;
     background-color: transparent;
-    color: orange;
+    color: rgb(255, 186, 49);
     font-size: large;
 }
 .dropdown-menu {
@@ -52,7 +163,7 @@ html, body {
     display: none;
     padding: 10px;
     background-color: white;
-    border: 1px solid orange;
+    border: 1px solid rgb(255, 186, 49);
 }
 .menu:hover .dropdown-menu {
     display: block;
@@ -66,7 +177,7 @@ main {
 /* footer styling */
 .footer {
     padding: 1%;
-    border-top: 1px solid orange;
+    border-top: 1px solid rgb(255, 186, 49);
 }
 #main-footer {
     padding-right: 3%;
