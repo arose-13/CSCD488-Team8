@@ -12,6 +12,7 @@
     if (isset($_POST['submit'])) {
 
         $choice = $_POST['type'];
+        $category = $_POST['category'];
         $amount = $_POST['amount'];
 
         if ($choice == "income") {
@@ -22,14 +23,6 @@
         }
 
     }
-
-    $test;
-    exec('java ..\java\budgetapp\Test.java', $test);
-
-    if ($test)
-        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' was successful.</p>");
-    else
-        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' failed.<p>");
 
 ?>
 
@@ -49,14 +42,41 @@
 
         <form method = "POST" action = "">
 
-            <input type = "radio" name = "type" value = "income">Income
-            <input type = "radio" name = "type" value = "expense">Expense
-            <br>
-            $<input type = "number" name = "amount">
-
-            <input type = "submit" value = "Submit">
+            <table>
+                <tr>
+                    <td><input type = "radio" name = "type" value = "income">Income</td>
+                    <td><input type = "radio" name = "type" value = "expense">Expense</td>
+                </tr>
+                <tr><td>Category:</td><td><input type = "text" name = "category"></td></tr>
+                <tr><td>Amount:</td><td><input type = "number" name = "amount"></td></tr>
+                <tr><td colspan = "2" style = "text-align:center;">
+                <button name = "submit">Submit</button>
+                </td></tr>
+            </table>
 
         </form>
+
+        <div class = "budget-page-display">
+
+            <div class = "columns">
+
+                <div class = "budget-page-column">
+                    <h2>Income</h2>
+                    <p>Data 1</p>
+                    <p>Data 2</p>
+                    <p>Data 3</p>
+                </div>
+
+                <div class = "budget-page-column">
+                    <h2>Expenses</h2>
+                    <p>Data 1</p>
+                    <p>Data 2</p>
+                    <p>Data 3</p>
+                </div>
+
+            </div>
+
+        </div>
 
     </main>
 

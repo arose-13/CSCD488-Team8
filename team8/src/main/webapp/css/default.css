@@ -126,6 +126,19 @@ html, body {
     width: 50%;
 }
 
+/* Budget page styling */
+.budget-page-display {
+    padding: 5%;
+}
+.budget-page-display .columns {
+    display: flex;
+    flex-direction: row;
+}
+.budget-page-display .columns .budget-page-column {
+    display: flex;
+    flex-direction: row;
+}
+
 /* Application header styling */
 #app-header .menu .dropdown-menu ul li {
     padding-top: 3px;
