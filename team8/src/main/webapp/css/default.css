@@ -65,9 +65,76 @@ html, body {
     background-color: rgb(255, 186, 49);
     width: 90%;
 }
+/* .rounded-container h3 {
+    justify-content: space-between;
+    width: 100%;
+    padding: 2px;
+} */
+.text-spaced-out {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin-left: 10px;
+}
 .data-container {
     margin: auto;
     align-self: center;
+}
+.progress-bar {
+    display: flex;
+    margin-right: 20px;
+    width: 200px;
+    height: 15px;
+    border-radius: 25px;
+    background-color: #929da1e0;
+}
+.progress__fill {
+    display: flex;
+    /* margin-right: 20px; */
+    width: 50%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgb(14, 170, 82);;
+}
+#utilities.progress__fill {
+    width: 100%;
+}
+#rent.progress__fill {
+    width: 100%;
+}
+#eating-out.progress__fill {
+    width: 66%;
+}
+#random.progress__fill {
+    width: 75%;
+}
+#groceries.progress__fill {
+    width: 25%;
+}
+
+#categories-list {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 95%;
+    margin-left: 10px;
+}
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    margin-bottom: 0px;
+    /* margin-top: 20px; */
+    /* margin: auto; */
+}
+.final-category-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+#actual-spending {
+    border-bottom: 2px solid rgb(140, 138, 138);
+    margin-bottom: 20px;
 }
 #net-income {
     background-color: rgb(14, 170, 82);
