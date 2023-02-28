@@ -117,7 +117,9 @@ html, body {
     flex-direction: column;
     border: 2px solid black;
     width: 95%;
+    margin-top: 65px;
     margin-left: 10px;
+    
 }
 .category-item {
     display: flex;
