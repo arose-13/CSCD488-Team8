@@ -9,27 +9,36 @@
     //$userID = $_SESSION['userID'];
 
     // Logic for updating the database
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['itemSubmit'])) {
 
-        $choice = $_POST['type'];
-        $amount = $_POST['amount'];
+        if (isset($_POST['type']) && isset($_POST['name']) && isset($_POST['amount'])) {
 
-        if ($choice == "income") {
-            ;// UPDATE [tablename] SET income = $amount WHERE userID = $_SESSION['userID'];
+            $choice = $_POST['type'];
+            $category = $_POST['name'];
+            $amount = $_POST['amount'];
+
+            if ($choice == "income") {
+                ;// UPDATE [tablename] SET income = $amount WHERE userID = $_SESSION['userID'];
+            }
+            else {
+                ;// UPDATE [tablename] SET expense = $amount WHERE userID = $_SESSION['userID'];
+            }
         }
-        else {
-            ;// UPDATE [tablename] SET expense = $amount WHERE userID = $_SESSION['userID'];
-        }
+        else
+            echo '<p style="color:red;">Please fill out all fields.</p>';
 
     }
 
-    $test;
-    exec('java ..\java\budgetapp\Test.java', $test);
+    if (isset($_POST['itemRemove'])) {
 
-    if ($test)
-        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' was successful.</p>");
-    else
-        echo("<p style = 'border-bottom:1px dashed gray;margin:0;'>Calling Java file via 'exec()' failed.<p>");
+        if (isset($_POST['incomeItems'])) {
+
+        }
+        if (isset($_POST['expenseItems'])) {
+
+        }
+
+    }
 
 ?>
 
@@ -49,14 +58,48 @@
 
         <form method = "POST" action = "">
 
-            <input type = "radio" name = "type" value = "income">Income
-            <input type = "radio" name = "type" value = "expense">Expense
-            <br>
-            $<input type = "number" name = "amount">
-
-            <input type = "submit" value = "Submit">
+            <table>
+                <tr>
+                    <td><input type = "radio" name = "type" value = "income">Income</td>
+                    <td><input type = "radio" name = "type" value = "expense">Expense</td>
+                </tr>
+                <tr><td>Name:</td><td><input type = "text" name = "name"></td></tr>
+                <tr><td>Amount:</td><td><input type = "number" step = "0.01" name = "amount"></td></tr>
+                <tr><td colspan = "2" style = "text-align:center;">
+                <button name = "itemSubmit">Submit</button>
+                </td></tr>
+            </table>
 
         </form>
+
+        <div class = "budget-page-display">
+
+            <form method = "POST" action = "">
+            <div class = "columns">
+
+                <div class = "budget-page-column">
+                    <h2>Income</h2>
+                    <div class = "budget-items">
+                        <p>Data 1</p><input type = "checkbox" id = "income1" name = "incomeItems[]">
+                        <p>Data 2</p><input type = "checkbox" id = "income2" name = "incomeItems[]">
+                        <p>Data 3</p><input type = "checkbox" id = "income3" name = "incomeItems[]">
+                    </div>
+                </div>
+
+                <div class = "budget-page-column">
+                    <h2>Expenses</h2>
+                    <div class = "budget-items">
+                        <p>Data 1</p><input type = "checkbox" id = "expense1" name = "expenseItems[]">
+                        <p>Data 2</p><input type = "checkbox" id = "expense2" name = "expenseItems[]">
+                        <p>Data 3</p><input type = "checkbox" id = "expense3" name = "expenseItems[]">
+                    </div>
+                </div>
+
+            </div>
+            <button name = "itemRemove">Remove Items</button>
+            </form>
+
+        </div>
 
     </main>
 
