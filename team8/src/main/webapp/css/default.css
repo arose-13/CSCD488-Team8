@@ -129,14 +129,22 @@ html, body {
 /* Budget page styling */
 .budget-page-display {
     padding: 5%;
+    text-align: center;
 }
 .budget-page-display .columns {
+    justify-content: space-around;
+    text-align: center;
     display: flex;
     flex-direction: row;
 }
 .budget-page-display .columns .budget-page-column {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+.budget-page-display .columns .budget-page-column .budget-items {
+    display: grid;
+    grid-template-columns: 1fr 1.5rem;
+    gap: 15px;
 }
 
 /* Application header styling */
