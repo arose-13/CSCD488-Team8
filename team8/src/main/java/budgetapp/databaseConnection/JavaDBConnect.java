@@ -10,16 +10,28 @@ import java.util.Date;
 public class JavaDBConnect {
     private static Connection connection;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/budgetappuser";
-    private static final String USERNAME = "sqluser";
-    private static final String PASSWORD = "Team8Password";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Rockyrudeman3";
 
     public JavaDBConnect() {
+        
         connectToDB();
     }
     //sanity check
-    // public static void main(String[] args) {
-    //     JavaDBConnect myConnection = new JavaDBConnect();
-    // }
+    public static void main(String[] args) {
+        JavaDBConnect myConnection = new JavaDBConnect();
+        System.out.println("hi");
+        AppUser user = new AppUser();
+        user.setuName("waymond");
+        user.setPassword("waymondspassword");
+        user.setEmail("waymond@gmail.com");
+        long mills = System.currentTimeMillis();
+        java.sql.Date agreeDate = new java.sql.Date(mills);
+        user.setuDate(agreeDate);
+
+        //myConnection.createNewUser(user);
+        myConnection.updateUserData(user);
+    }
 
     private static void connectToDB() {
         try {
@@ -27,6 +39,7 @@ public class JavaDBConnect {
             connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error connecting to DB: " + e.getMessage());
+
         }
     }
 
@@ -198,13 +211,13 @@ public class JavaDBConnect {
                 ResultSet resultSet = pstmt.executeQuery();
                 if (resultSet.next()) {
                     String pWord = resultSet.getString("password");
-                    Date utilDate = resultSet.getDate("userCreationDate");
 
                     newUser.setuName(userName);
                     newUser.setPassword(pWord);
                     newUser.setEmail(email);
-                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                    newUser.setuDate(sqlDate);
+                    long mills = System.currentTimeMillis();
+                    java.sql.Date date = new java.sql.Date(mills);
+                    newUser.setuDate(date);
                 }
             } else {
                 System.out.println("User doesn't exist or has repeated entries");
