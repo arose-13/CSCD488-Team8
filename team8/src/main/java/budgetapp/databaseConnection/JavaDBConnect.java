@@ -3,6 +3,8 @@ package budgetapp.databaseConnection;
 import java.sql.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import budgetapp.appUser.AppUser;
@@ -210,11 +212,25 @@ public class JavaDBConnect {
         }
     }
 
-    public AppUser createAppUser(String userName, String email, Date createDate) {
+    private UserData[] createDataArray(ResultSet rs) throws SQLException, JsonMappingException, JsonProcessingException {
+        ObjectMapper objMapper = new ObjectMapper();
+        UserData[] data = new UserData[12];
+        for (int i = 0; i < data.length; i++) {
+            JsonNode root = objMapper.readTree(rs.getString("m01"));
+            int actual = root.get("actual").intValue();
+            int expected = root.get("expected").intValue();
+            UserData u = new UserData(expected, actual);
+            System.out.println("actual: "+actual+" expected: "+expected);
+            data[i] = u;
+        }
+        return data;
+    }
+
+    public AppUser createAppUser(String userName, String email, Date createDate) throws Exception {
         try {
             AppUser newUser = new AppUser();
             if (countSearchResults(userName, email, createDate) == 1) {
-                String sql = "SELECT `password`, `userCreationDate` FROM `appusertable` WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
+                String sql = "SELECT `password`, `userCreationDate`, `m01`, `m02`, `m03`, `m04`, `m05`, `m06`, `m07`, `m08`, `m09`, `m10`, `m11`, `m12` FROM `appusertable` WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, userName);
                 pstmt.setString(2, email);
@@ -223,6 +239,9 @@ public class JavaDBConnect {
                 if (resultSet.next()) {
                     String pWord = resultSet.getString("password");
                     Date utilDate = resultSet.getDate("userCreationDate");
+
+                    UserData[] data = createDataArray(resultSet);
+                    newUser.setAllData(data);
 
                     newUser.setuName(userName);
                     newUser.setPassword(pWord);
@@ -270,39 +289,41 @@ public class JavaDBConnect {
     }
 }
 
-    // private void selectAllData() throws SQLException {
-    //     Statement statement = connection.createStatement();
-    //     ResultSet resultSet = statement.executeQuery("select * from `appusertable`");
-    //     while (resultSet.next()) {
-    //         System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4)+" | "+
-    //         resultSet.getString(5)+" | "+resultSet.getString(6)+" | "+resultSet.getString(7)+" | "+resultSet.getString(8)+" | "+
-    //         resultSet.getString(9)+" | "+resultSet.getString(10)+" | "+resultSet.getString(11)+" | "+resultSet.getString(12)+" | "+
-    //         resultSet.getString(13)+" | "+resultSet.getString(14)+" | "+resultSet.getString(15)+" | "+resultSet.getString(16)+" | "+
-    //         resultSet.getString(17)+" | "+resultSet.getString(18)+" | "+resultSet.getString(19));
-    //     }
-    // }
+// private void selectAllData() throws SQLException {
+//     Statement statement = connection.createStatement();
+//     ResultSet resultSet = statement.executeQuery("select * from `appusertable`");
+//     while (resultSet.next()) {
+//         System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4)+" | "+
+//         resultSet.getString(5)+" | "+resultSet.getString(6)+" | "+resultSet.getString(7)+" | "+resultSet.getString(8)+" | "+
+//         resultSet.getString(9)+" | "+resultSet.getString(10)+" | "+resultSet.getString(11)+" | "+resultSet.getString(12)+" | "+
+//         resultSet.getString(13)+" | "+resultSet.getString(14)+" | "+resultSet.getString(15)+" | "+resultSet.getString(16)+" | "+
+//         resultSet.getString(17)+" | "+resultSet.getString(18)+" | "+resultSet.getString(19));
+//     }
+// }
 
-        // public static void main(String[] args) throws SQLException, JsonProcessingException {
-    //     JavaDBConnect myConnection = new JavaDBConnect();
-    //     AppUser user = new AppUser();
-    //     user.setuName("waymond");
-    //     user.setPassword("waymondspassword");
-    //     user.setEmail("waymond@gmail.com");
-    //     long mills = System.currentTimeMillis();
-    //     java.sql.Date agreeDate = new java.sql.Date(mills);
-    //     user.setuDate(agreeDate);
+//     public static void main(String[] args) throws Exception {
+//     JavaDBConnect myConnection = new JavaDBConnect();
+//     AppUser user = new AppUser();
+//     user.setuName("waymond");
+//     user.setPassword("waymondspassword");
+//     user.setEmail("waymond@gmail.com");
+//     long mills = System.currentTimeMillis();
+//     java.sql.Date agreeDate = new java.sql.Date(mills);
+//     user.setuDate(agreeDate);
 
 
-    //     //myConnection.createNewUser(user);
-    //     //myConnection.changeEmail(user, "newemail@niajskdlf.com");
-    //     // UserData[] data = new UserData[] { new UserData("a"), new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),
-    //     // new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"), };
-    //     // AppUser createdUser = myConnection.createAppUser(user.getuName(), user.getEmail(), user.getuDate());
-    //     // System.out.println(createdUser);
-    //     //myConnection.updateUserData(user);
-    //     myConnection.selectAllData();
-    //     //closeDBConnection();
-    // }
+//     //myConnection.createNewUser(user);
+//     //myConnection.changeEmail(user, "newemail@niajskdlf.com");
+//     // UserData[] data = new UserData[] { new UserData("a"), new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),
+//     // new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"), };
+//     AppUser createdUser = myConnection.createAppUser(user.getuName(), user.getEmail(), user.getuDate());
+//     System.out.println(createdUser);
+//     //myConnection.updateUserData(user);
+//     myConnection.selectAllData();
+//     //closeDBConnection();
+// }
+
+
 
 
 
