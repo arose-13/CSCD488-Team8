@@ -217,10 +217,9 @@ public class JavaDBConnect {
         UserData[] data = new UserData[12];
         for (int i = 0; i < data.length; i++) {
             JsonNode root = objMapper.readTree(rs.getString("m01"));
-            int actual = root.get("actual").intValue();
-            int expected = root.get("expected").intValue();
+            double actual = root.get("actual").doubleValue();
+            double expected = root.get("expected").doubleValue();
             UserData u = new UserData(expected, actual);
-            System.out.println("actual: "+actual+" expected: "+expected);
             data[i] = u;
         }
         return data;
