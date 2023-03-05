@@ -50,7 +50,6 @@ public class JavaDBConnect {
         return user.getData();
     }
 
-
     private void updateUserData(String userName, String email, Date createDate, UserData[] data) throws JsonProcessingException {
         try {
             String sql = "UPDATE `appusertable` SET `m01`=?, `m02`=?, `m03`=?, `m04`=?, `m05`=?, `m06`=?, `m07`=?, `m08`=?, `m09`=?, `m10`=?, `m11`=?, `m12`=? WHERE `userName`=? AND `email`=? AND `userCreationDate`=?;";
@@ -74,7 +73,7 @@ public class JavaDBConnect {
             pstmt.executeUpdate();
             closeDBConnection();
         } catch (SQLException e) {
-            System.out.println("Error creating a user: " + e.getMessage());
+            System.out.println("Error updating a user: " + e.getMessage());
             closeDBConnection();
         }
     }
@@ -87,7 +86,7 @@ public class JavaDBConnect {
     private void createNewUser(String userName, String password, String email, Date createDate, UserData[] data) throws JsonProcessingException {
         try {
             //check if user already exits
-            if (countSearchResults(userName, email, createDate) == 0) {
+            if (countSearchResults(userName, email) == 0) {
                 String sql = "INSERT INTO `appusertable` (`m01`, `m02`, `m03`, `m04`, `m05`, `m06`, `m07`, `m08`, `m09`, `m10`, `m11`, `m12`, `userName`, `password`, `email`, `userCreationDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 ObjectMapper objMapper = new ObjectMapper();
@@ -123,9 +122,9 @@ public class JavaDBConnect {
         return user.getPassword();
     }
 
-    private void changePassword(String userName, String newPass, String email, Date createDate) { // could eventually send out verification emails prior to changing a field 
+    private void changePassword(String userName, String newPass, String email, Date createDate) {
         try{
-            if (countSearchResults(userName, email, createDate) == 1) {
+            if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `password` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, newPass);
@@ -150,7 +149,7 @@ public class JavaDBConnect {
 
     private void changeUserName(String userName, String newUName, String email, Date createDate) {
         try{ 
-            if (countSearchResults(userName, email, createDate) == 1) {
+            if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `userName` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, newUName);
@@ -175,7 +174,7 @@ public class JavaDBConnect {
 
     private void changeEmail(String userName, String newEmail, String email, Date createDate) {
         try{ 
-            if (countSearchResults(userName, email, createDate) == 1) {
+            if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `email` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, newEmail);
@@ -195,7 +194,7 @@ public class JavaDBConnect {
 
     public void deleteUser(String userName, String email, Date createDate) {
         try{
-            if (countSearchResults(userName, email, createDate) == 1) {
+            if (countSearchResults(userName, email) == 1) {
                 String sql = "DELETE FROM `appusertable` WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, userName);
@@ -215,10 +214,12 @@ public class JavaDBConnect {
     private UserData[] createDataArray(ResultSet rs) throws SQLException, JsonMappingException, JsonProcessingException {
         ObjectMapper objMapper = new ObjectMapper();
         UserData[] data = new UserData[12];
+        JsonNode[] root = new JsonNode[] { objMapper.readTree(rs.getString("m01")), objMapper.readTree(rs.getString("m02")), objMapper.readTree(rs.getString("m03")), 
+        objMapper.readTree(rs.getString("m04")), objMapper.readTree(rs.getString("m05")), objMapper.readTree(rs.getString("m06")), objMapper.readTree(rs.getString("m07")), 
+        objMapper.readTree(rs.getString("m08")), objMapper.readTree(rs.getString("m09")), objMapper.readTree(rs.getString("m10")), objMapper.readTree(rs.getString("m11")), objMapper.readTree(rs.getString("m12"))};
         for (int i = 0; i < data.length; i++) {
-            JsonNode root = objMapper.readTree(rs.getString("m01"));
-            double actual = root.get("actual").doubleValue();
-            double expected = root.get("expected").doubleValue();
+            double actual = root[i].get("actual").doubleValue();
+            double expected = root[i].get("expected").doubleValue();
             UserData u = new UserData(expected, actual);
             data[i] = u;
         }
@@ -228,7 +229,7 @@ public class JavaDBConnect {
     public AppUser createAppUser(String userName, String email, Date createDate) throws Exception {
         try {
             AppUser newUser = new AppUser();
-            if (countSearchResults(userName, email, createDate) == 1) {
+            if (countSearchResults(userName, email) == 1) {
                 String sql = "SELECT `password`, `userCreationDate`, `m01`, `m02`, `m03`, `m04`, `m05`, `m06`, `m07`, `m08`, `m09`, `m10`, `m11`, `m12` FROM `appusertable` WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, userName);
@@ -260,14 +261,13 @@ public class JavaDBConnect {
         }
     }
 
-    //method that returns the count of search credentials
-    public int countSearchResults(String userName, String email, Date createDate) { 
+    // removed Date from the search criteria since a user could be created with the same username and email with different creation date
+    public int countSearchResults(String userName, String email) { 
         try {
-            String sql = "SELECT COUNT(*) FROM `appusertable` WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
+            String sql = "SELECT COUNT(*) FROM `appusertable` WHERE `userName` = ? AND `email` = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, userName);
             pstmt.setString(2, email);
-            pstmt.setObject(3, createDate);
             ResultSet resultSet = pstmt.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt(1);
@@ -288,43 +288,50 @@ public class JavaDBConnect {
     }
 }
 
-// private void selectAllData() throws SQLException {
-//     Statement statement = connection.createStatement();
-//     ResultSet resultSet = statement.executeQuery("select * from `appusertable`");
-//     while (resultSet.next()) {
-//         System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4)+" | "+
-//         resultSet.getString(5)+" | "+resultSet.getString(6)+" | "+resultSet.getString(7)+" | "+resultSet.getString(8)+" | "+
-//         resultSet.getString(9)+" | "+resultSet.getString(10)+" | "+resultSet.getString(11)+" | "+resultSet.getString(12)+" | "+
-//         resultSet.getString(13)+" | "+resultSet.getString(14)+" | "+resultSet.getString(15)+" | "+resultSet.getString(16)+" | "+
-//         resultSet.getString(17)+" | "+resultSet.getString(18)+" | "+resultSet.getString(19));
-//     }
-// }
-
-//     public static void main(String[] args) throws Exception {
-//     JavaDBConnect myConnection = new JavaDBConnect();
-//     AppUser user = new AppUser();
-//     user.setuName("waymond");
-//     user.setPassword("waymondspassword");
-//     user.setEmail("waymond@gmail.com");
-//     long mills = System.currentTimeMillis();
-//     java.sql.Date agreeDate = new java.sql.Date(mills);
-//     user.setuDate(agreeDate);
-
-
-//     //myConnection.createNewUser(user);
-//     //myConnection.changeEmail(user, "newemail@niajskdlf.com");
-//     // UserData[] data = new UserData[] { new UserData("a"), new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),
-//     // new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"),new UserData("a"), };
-//     AppUser createdUser = myConnection.createAppUser(user.getuName(), user.getEmail(), user.getuDate());
-//     System.out.println(createdUser);
-//     //myConnection.updateUserData(user);
-//     myConnection.selectAllData();
-//     //closeDBConnection();
-// }
-
-
-
-
+//private void selectAllData() throws SQLException {
+    //     Statement statement = connection.createStatement();
+    //     ResultSet resultSet = statement.executeQuery("select * from `appusertable`");
+    //     while (resultSet.next()) {
+    //         System.out.println(resultSet.getInt(1)+" | "+resultSet.getString(2)+" | "+resultSet.getString(3)+" | "+resultSet.getString(4)+" | "+
+    //         resultSet.getString(5)+" | "+resultSet.getString(6)+" | "+resultSet.getString(7)+" | "+resultSet.getString(8)+" | "+
+    //         resultSet.getString(9)+" | "+resultSet.getString(10)+" | "+resultSet.getString(11)+" | "+resultSet.getString(12)+" | "+
+    //         resultSet.getString(13)+" | "+resultSet.getString(14)+" | "+resultSet.getString(15)+" | "+resultSet.getString(16)+" | "+
+    //         resultSet.getString(17)+" | "+resultSet.getString(18)+" | "+resultSet.getString(19));
+    //     }
+    // }
+    
+    // private UserData[] updateUserData(AppUser user, UserData[] data) throws JsonProcessingException {
+    //     updateUserData(user.getuName(), user.getEmail(), user.getuDate(), data);
+    //     return data;
+    // }
+    
+    //     public static void main(String[] args) throws Exception {
+    //     JavaDBConnect myConnection = new JavaDBConnect();
+    //     AppUser user = new AppUser();
+    //     user.setuName("waymond");
+    //     user.setPassword("waymondspassword");
+    //     user.setEmail("waymond@gmail.com");
+    //     long mills = System.currentTimeMillis();
+    //     java.sql.Date agreeDate = new java.sql.Date(mills);
+    //     user.setuDate(agreeDate);
+    
+    
+    //     //myConnection.createNewUser(user);
+    //     // UserData[] data = new UserData[] { new UserData(1.1, 1.1), new UserData(2.2, 2.2),new UserData(3.3, 3.3),new UserData(4.4, 4.4),new UserData(5.5, 5.5),new UserData(6.6, 6.6),
+    //     // new UserData(7.7, 7.7),new UserData(8.8, 8.8),new UserData(9.9, 9.9),new UserData(10.0, 10.0),new UserData(11.1, 11.1),new UserData(12.2, 12.2), };
+    //     //connectToDB();
+    //     // myConnection.deleteUser(user.getuName(), user.getEmail(), user.getuDate());
+    //     // connectToDB();
+    //     // myConnection.updateUserData(user, data);
+    //     // connectToDB();
+    //     // myConnection.changeEmail(user, "newemail@niajskdlf.com");
+    //     // connectToDB();
+    //     AppUser createdUser = myConnection.createAppUser(user.getuName(), "newemail@niajskdlf.com", user.getuDate());
+    //     System.out.println(createdUser);
+    //     connectToDB();
+    //     myConnection.selectAllData();
+    //     //closeDBConnection();
+    // }
 
 
     // //Sanity Check with Java -> mysql db connection
