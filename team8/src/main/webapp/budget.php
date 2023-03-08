@@ -1,5 +1,12 @@
 <?php
 
+    /*
+    $monthObject = array(
+	    “Income” => array( “Paycheck” => 1400.00, “Tips” => 500.00 ),
+	    “Expenses” => array( “Car Payment” => 210.00, “Utilities” => 150.00, “Rent” => 700.00, “Gas” => 60.00 ),
+    );
+    */
+
     //session_start();
 
     //if (!isset($_SESSION['username']))
@@ -8,20 +15,40 @@
     //$username = $_SESSION['username'];
     //$userID = $_SESSION['userID'];
 
-    // Logic for updating the database
-    if (isset($_POST['itemSubmit'])) {
+    include "php/getCurrentMonth.php";
 
-        if (isset($_POST['type']) && isset($_POST['name']) && isset($_POST['amount'])) {
+    $outBound = curl_init("localhost:8080/team8-0.1/webapi/UpdateThisMonthsJson/{uname}/{newMonthData}");
+    curl_setopt($outBound, CURLOPT_RETURNTRANSFER, true);
+    //curl_setopt($outBound, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($outBound, CURLOPT_POST, 1);
 
-            $choice = $_POST['type'];
-            $category = $_POST['name'];
-            $amount = $_POST['amount'];
+    $json_decoded = json_decode(getCurrentMonth($username));
+
+    if (isset($_POST["itemSubmit"])) {
+
+        if (isset($_POST["type"]) && isset($_POST["name"]) && isset($_POST["amount"])) {
+
+            $choice = $_POST["type"];
+            $category = $_POST["name"];
+            $amount = $_POST["amount"];
 
             if ($choice == "income") {
-                ;// UPDATE [tablename] SET income = $amount WHERE userID = $_SESSION['userID'];
+                $json_decoded["Income"] += array( $category => $amount );
+                $json_encoded = json_encode($json_decoded);
+
+                $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
+                curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
+                curl_exec($outBound);
+                curl_close($outBound);
             }
             else {
-                ;// UPDATE [tablename] SET expense = $amount WHERE userID = $_SESSION['userID'];
+                $json_decoded["Expenses"] += array( $category => $amount );
+                $json_encoded = json_encode($json_decoded);
+                
+                $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
+                curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
+                curl_exec($outBound);
+                curl_close($outBound);
             }
         }
         else
@@ -33,11 +60,25 @@
 
         if (isset($_POST['incomeItems'])) {
 
+            foreach ($_POST['incomeItems'] as $item)
+                $index = array_search($item, array_keys($json_decoded["Income"]));
+                    if ($index)
+                        unset($json_decoded["Income"][$index]);
+
+            curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
+            curl_exec($outBound);
         }
         if (isset($_POST['expenseItems'])) {
 
-        }
+            foreach ($_POST['expenseItems'] as $item)
+                $index = array_search($item, array_keys($json_decoded["Expenses"]));
+                    if ($index)
+                        unset($json_decoded["Expenses"][$index]);
 
+            curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
+            curl_exec($outBound);
+        }
+        curl_close($outBound);
     }
 
 ?>
@@ -80,18 +121,34 @@
                 <div class = "budget-page-column">
                     <h2>Income</h2>
                     <div class = "budget-items">
-                        <p>Data 1</p><input type = "checkbox" id = "income1" name = "incomeItems[]">
-                        <p>Data 2</p><input type = "checkbox" id = "income2" name = "incomeItems[]">
-                        <p>Data 3</p><input type = "checkbox" id = "income3" name = "incomeItems[]">
+                        <?php
+                        $i = 0;
+                        if (isset($json_decoded))
+                            foreach ($json_decoded["Income"] as $key => $value) {
+                                echo "<p>" . $key . ": " . $value . "</p>
+                                <input type = 'checkbox' id = 'income" . $i . "' name = 'incomeItems[]'>";
+                                $i++;
+                            }
+                        else
+                            echo "<p>Huh, there aren't any items to display yet! Try adding one above.</p>";
+                        ?>
                     </div>
                 </div>
 
                 <div class = "budget-page-column">
                     <h2>Expenses</h2>
                     <div class = "budget-items">
-                        <p>Data 1</p><input type = "checkbox" id = "expense1" name = "expenseItems[]">
-                        <p>Data 2</p><input type = "checkbox" id = "expense2" name = "expenseItems[]">
-                        <p>Data 3</p><input type = "checkbox" id = "expense3" name = "expenseItems[]">
+                    <?php
+                        $i = 0;
+                        if (isset($json_decoded))
+                            foreach ($json_decoded["Income"] as $key => $value) {
+                                echo "<p>" . $key . ": " . $value . "</p>
+                                <input type = 'checkbox' id = 'expense" . $i . "' name = 'expenseItems[]'>";
+                                $i++;
+                            }
+                        else
+                            echo "<p>Huh, there aren't any items to display yet! Try adding one above.</p>";
+                        ?>
                     </div>
                 </div>
 
