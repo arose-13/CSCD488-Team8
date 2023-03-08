@@ -15,8 +15,8 @@ import java.util.Date;
 public class JavaDBConnect {
     private static Connection connection;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/budgetappuser";
-    private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
+    private static final String USERNAME = "sqluser";
+    private static final String PASSWORD = "Team8Password";
 
     public JavaDBConnect() {
         connectToDB();
