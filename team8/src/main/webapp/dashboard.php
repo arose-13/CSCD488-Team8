@@ -5,20 +5,19 @@
     // if (!isset($_SESSION['username']))
     //     header("Location: login.php");
 
-    $username;
-    $fname;
-    $income = array();
-    $expenses = array();
+    // $username = $_SESSION['username'];
+    // $userID = $_SESSION['userID'];
 
-    // Get user's actual name from db to display it.
-    // exec('[path] getUsername ' . $username, $fname);
+    include "php/getCurrentMonth.php";
+    $json_decoded = json_decode(getCurrentMonth($username));
 
-    // Get user's income sources from db to display.
-    // exec('[path] getIncome ' . $username, $income);
+    foreach ($json_decoded["Income"] as $category => $amount)
+        $totalIncome += floatval($amount);
 
-    // Get user's expenses from db to display.
-    // exec('[path] getExpenses ' . $username, $expenses);
+    foreach ($json_decoded["Expenses"] as $category => $amount)
+        $totalExpenses += floatval($amount);
 
+    $netIncome = $totalIncome - $totalExpenses;
 ?>
 
 <!DOCTYPE html>
@@ -34,23 +33,115 @@
     <?php include 'components/app-header.html' ?>
 
     <main>
+        <div class="dash-banner">
+            <li>Month of: February</li>
+            <li><?php echo $username ?></li>
+        </div>
 
-        <!-- <h1>Welcome<?php $fname ?></h1> -->
-        <?php include 'components/app-dashboard.html' ?>
+        <div class = "dashboard-grid">
 
-        <!-- Display income -->
-        <?php
-            // foreach ($income as $source) {
-            //     echo($source);
-            // }
-        ?>
+            <div class = "grid-section">
+                <div class = "grid-section-header">
+                    <p>Month Summary</p>
+                </div>
+                <div class = "grid-section-body" id = "month-summary">
+                    <div id = "income">
+                        <h3 class="rounded-container">This is your income</h3>
+                        <div class="grid-section-body" id="pie-chart">
+                            <div class="x-box"></div>
+                            <div class="x-box-cont">
 
-        <!-- Display expenses -->
-        <?php
-            // foreach ($expenses as $expense) {
-            //     echo($expense);
-            // }
-        ?>
+                                <?php 
+                                    foreach ($json_decoded["Income"] as $category => $amount)
+                                        echo "<strong>" . $category . " - " . $amount . "</strong>";
+                                ?>
+
+                                <!-- <strong style="color: #ff264a">Utilities</strong>
+                                <strong style="color: #eedc12">Rent</strong>
+                                <strong style="color: #12CBC4">Eating out/social</strong>
+                                <strong style="color: rgb(22, 185, 22)">Random</strong>
+                                <strong style="color: rgb(126, 35, 229)">Groceries</strong>
+                                <strong>Gas</strong> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "expenses">
+                        <h3 class="rounded-container">These are your expenses.</h3>
+
+                        <?php 
+                            foreach ($json_decoded["Income"] as $category => $amount)
+                                echo "<strong>" . $category . " - " . $amount . "</strong>";
+                        ?>
+
+                        <!-- <p>Net Income</p>
+                        <div class="rounded-container" id="net-income">+ $500</div>
+                        <div id="user-message">Congradulations! You saved $500 this month!</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class = "grid-section">
+                <div class = "grid-section-header">
+                    <p>Budget Goals</p>
+                </div>
+                <div class = "grid-section-body" id = "budget-goals">
+                    <table>
+                        <tr><td>Total Income:</td><td><?php echo $totalIncome; ?></td></tr>
+                        <tr><td>Total Expenses:</td><td><?php echo $totalExpenses; ?></td></tr>
+                        <tr><td>Net Income:</td><td><?php echo $netIncome; ?></td></tr>
+                    </table>
+
+                    <!-- <div class="text-spaced-out">
+                        <p>Spending Goal:</p>
+                        <p>$200</p>
+                    </div>
+                    <div class="text-spaced-out" id="actual-spending">
+                        <p>Actual Spending:</p>
+                        <p>$100</p>
+                    </div>
+                    <div id="categories-list">
+                        <ul class="category-item">
+                            Utilities: $100 spent / $100
+                            <div class="progress-bar">
+                                <div class="progress__fill" id="utilities">
+                                    <span class="progress__text"></span>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="category-item">Rent: $500 spent / $500
+                            <div class="progress-bar">
+                                <div class="progress__fill"  id="rent">
+                                    <span class="progress__text"></span>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="category-item">Eating out/social: $100 spent / $150
+                            <div class="progress-bar">
+                                <div class="progress__fill"  id="eating-out">
+                                    <span class="progress__text"></span>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="category-item">Random: $75 spent / $100
+                            <div class="progress-bar">
+                                <div class="progress__fill" id="random">
+                                    <span class="progress__text"></span>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="final-category-item">Groceries: $50 spent / $200
+                            <div class="progress-bar">
+                                <div class="progress__fill"  id="groceries">
+                                    <span class="progress__text"></span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+
+            </div>
+        </div>
 
     </main>
 
