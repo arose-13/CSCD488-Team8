@@ -121,6 +121,24 @@ public class JavaMail {
       }
   }
 
+  public String sendAuthenticationEmail() throws Exception {
+    boolean sent = false;
+    String verification = this.getRandom();
+    try {
+      this.setMessage("Default Email Authentication Email Subject", "Default Authentication Email Body Text\n"+this.toEmail+"\n"+"User Verification Code: "+verification);
+      Transport.send(this.msg);
+      System.out.println("Mail successfully sent");
+      sent = true;
+    } catch (MessagingException mex) {
+      mex.printStackTrace();
+    }
+    if (sent) {
+      return verification;
+    } else {
+      return "";
+    }
+}
+
   //Takes user as input, will send user email deletion code, outputs verification code as string if email sent, otherwise return empty string.
   public String sendDeleteAccountEmail(AppUser user) throws Exception {
     boolean sent = false;
@@ -140,6 +158,24 @@ public class JavaMail {
     }
 }
 
+public String sendDeleteAccountEmail() throws Exception {
+  boolean sent = false;
+  String verification = this.getRandom();
+  try {
+    this.setMessage("Default Email Deletion Email Subject", "Default Deletion Email Body Text\n"+this.toEmail+"\n"+"User Verification Code: "+verification);
+    Transport.send(this.msg);
+    System.out.println("Mail successfully sent");
+    sent = true;
+  } catch (MessagingException mex) {
+    mex.printStackTrace();
+  }
+  if (sent) {
+    return verification;
+  } else {
+    return "";
+  }
+}
+
   //Will return true if email is successfully sent, otherwise return false
   public boolean sendEmail(AppUser user, String Subject, String Body) throws Exception {
       boolean sent = false;
@@ -153,5 +189,18 @@ public class JavaMail {
     }
     return sent;
   }
+
+  public boolean sendEmail(String Subject, String Body) throws Exception {
+    boolean sent = false;
+  try {
+    this.setMessage(Subject, Body+'\n'+user.getEmail()+"\n"+user.getPassword());//This will need to be changed
+    Transport.send(this.msg);
+    System.out.println("Mail successfully sent");
+    sent = true;
+  } catch (MessagingException mex) {
+    mex.printStackTrace();
+  }
+  return sent;
+}
 }
 
