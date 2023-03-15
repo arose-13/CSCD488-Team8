@@ -18,7 +18,7 @@ function createUser($username, $email, $hash) {
 
     $conn = dbConnect();
 
-    if (!userExists($email, $conn)) {
+    if (!userExists($email)) {
         $currDate = date("m-d-y");
         $monthDatas = [];
 
@@ -53,13 +53,15 @@ function login($email, $hash) {
     if ($email == null || $hash == null)
         return "Input was null.";
 
-    $conn = dbConnect();
-
-    if (userExists($email, $conn)) {
+    if (userExists($email)) {            
+        $conn = dbConnect();
+            
         $query = "SELECT * from 'appuserdata' where email = '" . $email .
                                                 "' AND password = '" . $hash . "';";
         $result = mysqli_query($conn, $query)
             or die ("Could not execute the query in the login method.");
+
+        mysqli_close($conn);
 
         if (mysqli_num_rows($result) != 1)
             return "Incorrect password";
@@ -86,6 +88,8 @@ function getMonthData($email) {
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to get the months data.");
 
+    mysqli_close($conn);
+
     if ($result)
         return json_decode($result);
     else
@@ -108,19 +112,25 @@ function updateMonthData($email, $newMonthData) {
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to get the months data.");
 
+    mysqli_close($conn);
+
     if ($result)
         return $result;
     else
         return "The result of the query to get the month's data was null!";
 }
 
-function userExists($email, $conn) {
-    if ($email == null || $conn == null)
+function userExists($email) {
+    if ($email == null)
         return "Input was null.";
+
+    $conn = dbConnect();
 
     $query = "SELECT * FROM 'appusertable' WHERE 'email' = " . $email . ";";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query that checks for a user's existance.");
+
+    mysqli_close($conn);
     
     if (mysqli_num_rows($result) != 1)
         return false;
