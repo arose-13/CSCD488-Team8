@@ -40,7 +40,7 @@
                 $json_decoded["Income"] += array( $category => $amount );
                 $json_encoded = json_encode($json_decoded);
 
-                // updateMonthData($email, $json_decoded);
+                // updateMonthData($email, $json_encoded);
                 $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
                 curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
                 curl_exec($outBound);
@@ -50,6 +50,7 @@
                 $json_decoded["Expenses"] += array( $category => $amount );
                 $json_encoded = json_encode($json_decoded);
                 
+                // updateMonthData($email, $json_encoded);
                 $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
                 curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
                 curl_exec($outBound);
