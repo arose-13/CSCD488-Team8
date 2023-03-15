@@ -91,7 +91,7 @@ function getMonthData($email) {
     mysqli_close($conn);
 
     if ($result)
-        return json_decode($result);
+        return $result;
     else
         return "The result of the query to get the month's data was null!";
 }
@@ -118,6 +118,32 @@ function updateMonthData($email, $newMonthData) {
         return $result;
     else
         return "The result of the query to get the month's data was null!";
+}
+
+function changeUserEmail($oldEmail, $newEmail) {
+    if ($oldEmail == null || $newEmail == null)
+        return "Input was null.";
+
+    $conn = dbConnect();
+
+    $query = "UPDATE 'appusertable' SET 'email' = " . $newEmail . " WHERE 'email' = " . $oldEmail . ";";
+    $result = mysqli_query($conn, $query)
+            or die ("Could not execute the query to update the user's email.");
+
+    return "Success";
+}
+
+function changeUserPassword($email, $hash) {
+    if ($email == null || $hash == null)
+        return "Input was null.";
+
+    $conn = dbConnect();
+
+    $query = "UPDATE 'appusertable' SET 'password' = " . $hash . " WHERE 'email' = " . $email . ";";
+    $result = mysqli_query($conn, $query)
+            or die ("Could not execute the query to update the user's email.");
+
+    return "Success";
 }
 
 function userExists($email) {
