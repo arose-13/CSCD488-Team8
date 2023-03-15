@@ -14,6 +14,10 @@
 
     //$username = $_SESSION['username'];
     //$userID = $_SESSION['userID'];
+    //$userEmail = $_SESSION['email'];
+
+    // include "backend/functions.php";
+    // $json_decoded = json_decode(getMonthJson($email));
 
     include "php/getCurrentMonth.php";
 
@@ -36,6 +40,7 @@
                 $json_decoded["Income"] += array( $category => $amount );
                 $json_encoded = json_encode($json_decoded);
 
+                // updateMonthData($email, $json_decoded);
                 $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
                 curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
                 curl_exec($outBound);

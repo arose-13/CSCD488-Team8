@@ -7,6 +7,10 @@
 
     // $username = $_SESSION['username'];
     // $userID = $_SESSION['userID'];
+    // $userEmail= $_SESSION['email'];
+
+    // include "backend/functions.php;"
+    // $json_decoded = json_decode(getMonthData($userEmail));
 
     include "php/getCurrentMonth.php";
     $json_decoded = json_decode(getCurrentMonth($username));
