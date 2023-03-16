@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <script src="js/loginpage.js"></script>
+    <!-- <script src="js/loginpage.js"></script> -->
     <title>Login Page</title>
     <link rel = "stylesheet" href = "css/default.css" type = "text/css">
     <?php include 'components/head.html'; ?>
@@ -14,7 +14,9 @@
         <h1>Login Page</h1>
 
         <h2>Please enter in email and password below</h2>
-        <form id="login">
+        <form id="login" action="login.php" method="post">
+            <label for="uname">Username: </label><br>
+            <input type="text" id="uname" name="uname"><br>
             <label for="email">Email Address: </label><br>
             <input type="text" id="email" name="email"><br>
             <label for="password">Password: </label><br>
@@ -30,3 +32,15 @@
     <?php include 'components/main-footer.html';?>
 
 </body>
+</html>
+<?php
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $uName = $_POST["uname"];
+        echo $email;
+        echo $password;
+        echo $uName;
+
+        
+
+?>
