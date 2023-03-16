@@ -43,6 +43,20 @@ public class AppUserResource {
     }
 
     @GET
+    @Path("/getUser/{email}/{pwd}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public AppUser getUser(@PathParam("email")String email,@PathParam("pwd")String pwd) throws Exception {
+        try {
+            JavaDBConnect myConnection = new JavaDBConnect();
+            //AppUser fetchedUser = myConnection.createAppUser(pwd, email);
+            return null;
+        } catch (Exception e) {
+            System.out.println("User Not Found");
+        }
+        throw new Exception("User Not Found");
+    }
+
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String testString() throws Exception {
         return "user GET";
