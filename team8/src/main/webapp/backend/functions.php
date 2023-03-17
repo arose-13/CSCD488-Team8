@@ -103,11 +103,7 @@ function updateMonthData($email, $newMonthData) {
 
     $conn = dbConnect();
 
-    $date = date('m');
-    if ($date < 10)
-        $month = '0' . $date;
-    else
-        $month = $date;
+    $month = date('m');
     
     $query = "UPDATE appusertable SET m" . $month . " = '" . $newMonthData . "' WHERE email = '" . $email . "';";
     $result = mysqli_query($conn, $query)
