@@ -19,14 +19,18 @@
     // include "backend/functions.php";
     // $json_decoded = json_decode(getMonthJson($email));
 
-    include "php/getCurrentMonth.php";
+    //include "php/getCurrentMonth.php";
 
-    $outBound = curl_init("localhost:8080/team8-0.1/webapi/UpdateThisMonthsJson/{uname}/{newMonthData}");
-    curl_setopt($outBound, CURLOPT_RETURNTRANSFER, true);
+    //$outBound = curl_init("localhost:8080/team8-0.1/webapi/UpdateThisMonthsJson/{uname}/{newMonthData}");
+    //curl_setopt($outBound, CURLOPT_RETURNTRANSFER, true);
     //curl_setopt($outBound, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    curl_setopt($outBound, CURLOPT_POST, 1);
+    //curl_setopt($outBound, CURLOPT_POST, 1);
 
-    $json_decoded = json_decode(getCurrentMonth($username));
+    //$json_decoded = json_decode(getCurrentMonth($username));
+
+    include "backend/functions.php";
+    //$email = "testEmail4@gmail.com";
+    $json_decoded = json_decode(getMonthData($email), true);
 
     if (isset($_POST["itemSubmit"])) {
 
@@ -37,24 +41,34 @@
             $amount = $_POST["amount"];
 
             if ($choice == "income") {
-                $json_decoded["Income"] += array( $category => $amount );
+
+                if (isset($json_decoded["Income"]))
+                    $json_decoded["Income"] += array( $category => $amount );
+                else
+                    $json_decoded["Income"] = array( $category => $amount );
+
                 $json_encoded = json_encode($json_decoded);
 
-                // updateMonthData($email, $json_encoded);
-                $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
-                curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
-                curl_exec($outBound);
-                curl_close($outBound);
+                updateMonthData($email, $json_encoded);
+                // $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
+                // curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
+                // curl_exec($outBound);
+                // curl_close($outBound);
             }
             else {
-                $json_decoded["Expenses"] += array( $category => $amount );
+
+                if (isset($json_decoded["Expenses"]))
+                    $json_decoded["Expenses"] += array( $category => $amount );
+                else
+                    $json_decoded["Expenses"] = array( $category => $amount );
+
                 $json_encoded = json_encode($json_decoded);
                 
-                // updateMonthData($email, $json_encoded);
-                $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
-                curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
-                curl_exec($outBound);
-                curl_close($outBound);
+                updateMonthData($email, $json_encoded);
+                // $outBoundQuery = http_build_query( array('uname'=>$username, 'newMonthData'=>$json_encoded));
+                // curl_setopt($outBound, CURLOPT_POSTFIELDS, $outBoundQuery);
+                // curl_exec($outBound);
+                // curl_close($outBound);
             }
         }
         else
@@ -67,24 +81,24 @@
         if (isset($_POST['incomeItems'])) {
 
             foreach ($_POST['incomeItems'] as $item)
-                $index = array_search($item, array_keys($json_decoded["Income"]));
-                    if ($index)
-                        unset($json_decoded["Income"][$index]);
+                unset($json_decoded["Income"][$item]);
 
-            curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
-            curl_exec($outBound);
+            $json_encoded = json_encode($json_decoded);
+            $result = updateMonthData($email, $json_encoded);
+            // curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
+            // curl_exec($outBound);
         }
         if (isset($_POST['expenseItems'])) {
 
             foreach ($_POST['expenseItems'] as $item)
-                $index = array_search($item, array_keys($json_decoded["Expenses"]));
-                    if ($index)
-                        unset($json_decoded["Expenses"][$index]);
+                unset($json_decoded["Expenses"][$item]);
 
-            curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
-            curl_exec($outBound);
+            $json_encoded = json_encode($json_decoded);
+            updateMonthData($email, $json_encoded);
+            // curl_setopt($outBound, CURLOPT_POSTFIELDS, $json_encoded);
+            // curl_exec($outBound);
         }
-        curl_close($outBound);
+        //curl_close($outBound);
     }
 
 ?>
@@ -129,14 +143,15 @@
                     <div class = "budget-items">
                         <?php
                         $i = 0;
-                        if (isset($json_decoded))
+                        if (count($json_decoded) === 0 || count($json_decoded["Income"]) === 0)
+                            echo "<p>You have no income sources.</p>";
+                        else
                             foreach ($json_decoded["Income"] as $key => $value) {
                                 echo "<p>" . $key . ": " . $value . "</p>
-                                <input type = 'checkbox' id = 'income" . $i . "' name = 'incomeItems[]'>";
+                                <input type = 'checkbox' id = 'income" . $i . "' name = 'incomeItems[]' value = '" . $key . "'>";
                                 $i++;
                             }
-                        else
-                            echo "<p>Huh, there aren't any items to display yet! Try adding one above.</p>";
+                            
                         ?>
                     </div>
                 </div>
@@ -146,14 +161,14 @@
                     <div class = "budget-items">
                     <?php
                         $i = 0;
-                        if (isset($json_decoded))
-                            foreach ($json_decoded["Income"] as $key => $value) {
+                        if (count($json_decoded) === 0 || count($json_decoded["Expenses"]) === 0)
+                            echo "<p>You have no expenses.</p>";
+                        else
+                            foreach ($json_decoded["Expenses"] as $key => $value) {
                                 echo "<p>" . $key . ": " . $value . "</p>
-                                <input type = 'checkbox' id = 'expense" . $i . "' name = 'expenseItems[]'>";
+                                <input type = 'checkbox' id = 'expense" . $i . "' name = 'expenseItems[]' value = '" . $key . "'>";
                                 $i++;
                             }
-                        else
-                            echo "<p>Huh, there aren't any items to display yet! Try adding one above.</p>";
                         ?>
                     </div>
                 </div>

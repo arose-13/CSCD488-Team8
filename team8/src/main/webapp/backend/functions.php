@@ -19,7 +19,7 @@ function createUser($username, $email, $hash) {
     $conn = dbConnect();
 
     if (!userExists($email)) {
-        $currDate = date("m-d-y");
+        $currDate = date("yyyy-mm-dd");
         $monthDatas = [];
 
         for ($i = 1; $i <= 12; $i++) {
@@ -32,11 +32,17 @@ function createUser($username, $email, $hash) {
             array_push($monthDatas, $monthData);
         }
         
-        $query = "INSERT INTO `appusertable` ('" . $monthDatas[0] . "', '" . $monthDatas[1] . "', '" . $monthDatas[2] .
-                                                "', '" . $monthDatas[3] . "', '" . $monthDatas[4] . "', '" . $monthDatas[5] .
-                                                "', '" . $monthDatas[6] . "', '" . $monthDatas[7] . "', '" . $monthDatas[8] .
-                                                "', '" . $monthDatas[9] . "', '" . $monthDatas[10] . "', '" . $monthDatas[11] .
-                                                "', '" . $username . "', '" . $hash . "', '" . $email . "', '" . $currDate . "')";
+        $query = "INSERT INTO appusertable ('" . $username . "', '" . $hash . "', '" . $email . "', '" . $currDate . "')";
+
+        $query = "INSERT INTO appusertable (`Id`, `userName`, `password`, `email`, `userCreationDate`, 
+                    `accountActivated`, `userRole`, `m01`, `m02`, `m03`, `m04`, `m05`, `m06`, `m07`, `m08`, 
+                    `m09`, `m10`, `m11`, `m12`) VALUES (NULL, '" . $username . "', '" . $hash . "',
+                    '" . $email . "', '" . $currDate . "', '1', 'USER', 
+                    " . $monthDatas[0] . "', '" . $monthDatas[1] . "', '" . $monthDatas[2] .
+                    "', '" . $monthDatas[3] . "', '" . $monthDatas[4] . "', '" . $monthDatas[5] .
+                    "', '" . $monthDatas[6] . "', '" . $monthDatas[7] . "', '" . $monthDatas[8] .
+                    "', '" . $monthDatas[9] . "', '" . $monthDatas[10] . "', '" . $monthDatas[11] .
+                    "');";
 
         $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to create a new user.");
@@ -56,8 +62,7 @@ function login($email, $hash) {
     if (userExists($email)) {            
         $conn = dbConnect();
             
-        $query = "SELECT * from 'appuserdata' where email = '" . $email .
-                                                "' AND password = '" . $hash . "';";
+        $query = "SELECT * from appuserdata where email = '" . $email . "' AND password = '" . $hash . "';";
         $result = mysqli_query($conn, $query)
             or die ("Could not execute the query in the login method.");
 
@@ -78,20 +83,16 @@ function getMonthData($email) {
 
     $conn = dbConnect();
 
-    $date = date('m');
-    if ($date < 10)
-        $month = '0' . $date;
-    else
-        $month = $date;
+    $month = date('m');
     
-    $query = "SELECT 'm" . $month . "' FROM 'appusertable' WHERE email = '" . $email . "';";
+    $query = "SELECT m" . $month . " FROM appusertable WHERE email = '" . $email . "';";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to get the months data.");
 
     mysqli_close($conn);
 
     if ($result)
-        return $result;
+        return mysqli_fetch_array($result)[0];
     else
         return "The result of the query to get the month's data was null!";
 }
@@ -102,13 +103,9 @@ function updateMonthData($email, $newMonthData) {
 
     $conn = dbConnect();
 
-    $date = date('m');
-    if ($date < 10)
-        $month = '0' . $date;
-    else
-        $month = $date;
+    $month = date('m');
     
-    $query = "UPDATE 'appusertable' SET 'm" . $month . "' = '" . $newMonthData . "' WHERE email = '" . $email . "';";
+    $query = "UPDATE appusertable SET m" . $month . " = '" . $newMonthData . "' WHERE email = '" . $email . "';";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to get the months data.");
 
@@ -126,7 +123,7 @@ function changeUserEmail($oldEmail, $newEmail) {
 
     $conn = dbConnect();
 
-    $query = "UPDATE 'appusertable' SET 'email' = " . $newEmail . " WHERE 'email' = " . $oldEmail . ";";
+    $query = "UPDATE appusertable SET email = " . $newEmail . " WHERE email = " . $oldEmail . ";";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to update the user's email.");
 
@@ -139,7 +136,7 @@ function changeUserPassword($email, $hash) {
 
     $conn = dbConnect();
 
-    $query = "UPDATE 'appusertable' SET 'password' = " . $hash . " WHERE 'email' = " . $email . ";";
+    $query = "UPDATE appusertable SET password = " . $hash . " WHERE email = " . $email . ";";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query to update the user's email.");
 
@@ -152,7 +149,7 @@ function userExists($email) {
 
     $conn = dbConnect();
 
-    $query = "SELECT * FROM 'appusertable' WHERE 'email' = " . $email . ";";
+    $query = "SELECT * FROM appusertable WHERE email = '" . $email . "';";
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query that checks for a user's existance.");
 
