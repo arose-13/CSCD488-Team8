@@ -9,17 +9,27 @@
     // $userID = $_SESSION['userID'];
     // $userEmail= $_SESSION['email'];
 
-    // include "backend/functions.php;"
-    // $json_decoded = json_decode(getMonthData($userEmail));
+    include "backend/functions.php";
+    createUser("testUser4", "testEmail4@gmail.com", "abcd");
+    $json_decoded = json_decode(getMonthData("testEmail4@gmail.com"));
+    // $json_decoded = array(
+    //     "Income" => array("Paycheck" => 1500.00, "Side Hustle" => 200),
+    //     "Expenses" => array("Car Payment" => 120, "Car Insurance" => 80, "rent" => 400),
+    // );
 
-    include "php/getCurrentMonth.php";
-    $json_decoded = json_decode(getCurrentMonth($username));
+    // include "php/getCurrentMonth.php";
+    // $json_decoded = json_decode(getCurrentMonth($username));
 
-    foreach ($json_decoded["Income"] as $category => $amount)
-        $totalIncome += floatval($amount);
+    $totalIncome = 0;
+    $totalExpenses = 0;
 
-    foreach ($json_decoded["Expenses"] as $category => $amount)
-        $totalExpenses += floatval($amount);
+    if (isset($json_decoded["Income"]))
+        foreach ($json_decoded["Income"] as $category => $amount)
+            $totalIncome += floatval($amount);
+
+    if (isset($json_decoded["Expenses"]))
+        foreach ($json_decoded["Expenses"] as $category => $amount)
+            $totalExpenses += floatval($amount);
 
     $netIncome = $totalIncome - $totalExpenses;
 ?>
@@ -56,8 +66,12 @@
                             <div class="x-box-cont">
 
                                 <?php 
-                                    foreach ($json_decoded["Income"] as $category => $amount)
-                                        echo "<strong>" . $category . " - " . $amount . "</strong>";
+
+                                    if (isset($json_decoded["Income"]))
+                                        foreach ($json_decoded["Income"] as $category => $amount)
+                                            echo "<strong>" . $category . " - " . $amount . "</strong>";
+                                    else
+                                        echo "You have no income sources.";
                                 ?>
 
                                 <!-- <strong style="color: #ff264a">Utilities</strong>
@@ -73,8 +87,12 @@
                         <h3 class="rounded-container">These are your expenses.</h3>
 
                         <?php 
-                            foreach ($json_decoded["Income"] as $category => $amount)
-                                echo "<strong>" . $category . " - " . $amount . "</strong>";
+
+                            if (isset($json_decoded["Expenses"]))
+                                foreach ($json_decoded["Expenses"] as $category => $amount)
+                                    echo "<strong>" . $category . " - " . $amount . "</strong><br>";
+                            else
+                                echo "You have no expenses.";
                         ?>
 
                         <!-- <p>Net Income</p>
