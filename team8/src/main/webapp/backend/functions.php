@@ -56,20 +56,21 @@ function createUser($username, $email, $hash) {
 }
 
 function login($email, $hash) {
-    if ($email == null || $hash == null)
-        return "Input was null.";
+    if ($email == null || $hash == null
+        || $email == "" || $hash == "")
+        return "Input was invalid.";
 
     if (userExists($email)) {            
         $conn = dbConnect();
             
-        $query = "SELECT * from appuserdata where email = '" . $email . "' AND password = '" . $hash . "';";
+        $query = "SELECT * from appusertable where email = '" . $email . "' AND password = '" . $hash . "';";
         $result = mysqli_query($conn, $query)
             or die ("Could not execute the query in the login method.");
 
         mysqli_close($conn);
 
         if (mysqli_num_rows($result) != 1)
-            return "Incorrect password";
+            return "Incorrect password.";
         else
             return "Success";
     }
@@ -144,8 +145,8 @@ function changeUserPassword($email, $hash) {
 }
 
 function userExists($email) {
-    if ($email == null)
-        return "Input was null.";
+    if ($email == null || $email == "")
+        return "Input was invalid.";
 
     $conn = dbConnect();
 
