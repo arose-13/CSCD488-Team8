@@ -21,17 +21,6 @@ function createUser($username, $email, $hash) {
 
     if (!userExists($email)) {
         $currDate = date("Y-m-d");
-        $monthDatas = [];
-
-        for ($i = 1; $i <= 12; $i++) {
-            $monthData = json_encode(
-                array(
-                'Income' => array(),
-                'Expenses' => array(),
-                )
-            );
-            array_push($monthDatas, $monthData);
-        }
 
         $query = "INSERT INTO appusertable
                     (`Id`, `userName`, `password`, `email`, `userCreationDate`, `accountActivated`, `userRole`, 
