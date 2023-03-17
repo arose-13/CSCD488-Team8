@@ -10,8 +10,9 @@
     // $userEmail= $_SESSION['email'];
 
     include "backend/functions.php";
-    createUser("testUser4", "testEmail4@gmail.com", "abcd");
-    $json_decoded = json_decode(getMonthData("testEmail4@gmail.com"));
+    // createUser("testUser4", "testEmail4@gmail.com", "abcd");
+    // $json_decoded = json_decode(getMonthData("testEmail4@gmail.com"), true);
+
     // $json_decoded = array(
     //     "Income" => array("Paycheck" => 1500.00, "Side Hustle" => 200),
     //     "Expenses" => array("Car Payment" => 120, "Car Insurance" => 80, "rent" => 400),
@@ -20,6 +21,7 @@
     // include "php/getCurrentMonth.php";
     // $json_decoded = json_decode(getCurrentMonth($username));
 
+    $json_decoded = json_decode(getMonthData($email));
     $totalIncome = 0;
     $totalExpenses = 0;
 
@@ -67,11 +69,11 @@
 
                                 <?php 
 
-                                    if (isset($json_decoded["Income"]))
+                                    if (count($json_decoded["Income"]) === 0)
+                                        echo "You have no income sources.";
+                                    else
                                         foreach ($json_decoded["Income"] as $category => $amount)
                                             echo "<strong>" . $category . " - " . $amount . "</strong>";
-                                    else
-                                        echo "You have no income sources.";
                                 ?>
 
                                 <!-- <strong style="color: #ff264a">Utilities</strong>
@@ -88,11 +90,11 @@
 
                         <?php 
 
-                            if (isset($json_decoded["Expenses"]))
+                            if (count($json_decoded["Expenses"]) === 0)
+                                echo "You have no expenses.";
+                            else
                                 foreach ($json_decoded["Expenses"] as $category => $amount)
                                     echo "<strong>" . $category . " - " . $amount . "</strong><br>";
-                            else
-                                echo "You have no expenses.";
                         ?>
 
                         <!-- <p>Net Income</p>
