@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-    <!-- <script src="js/loginpage.js"></script> -->
     <title>Login Page</title>
     <link rel = "stylesheet" href = "css/default.css" type = "text/css">
     <?php include 'components/head.html'; ?>

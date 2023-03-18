@@ -15,14 +15,14 @@
         <h1>Create Account</h1>
         <form id="createdCredentials" action="signup.php" method="post">
             <label for="uname">Username:</label><br>
-            <input type="text" id="uname" name="uname"><br>
+            <input type="text" name="uname"><br>
             <label for="email">Email Address: </label><br>
-            <input type="text" id="email" name="email"><br>
+            <input type="text" name="email"><br>
             <label for="password">Password: </label><br>
-            <input type="text" id="password" name="password"><br>
+            <input type="text" name="password"><br>
             <label for="reenterpassword">Re-enter Password: </label><br>
-            <input type="text" id="reenterpassword" name="reenterpassword"><br><br>
-            <input type="submit" value="create account" id="createAccount"><br><br>
+            <input type="text" name="reenterpassword"><br><br>
+            <input type="submit" value="create account"><br><br>
         </form>
     </main>
 
