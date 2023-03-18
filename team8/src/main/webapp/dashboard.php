@@ -21,7 +21,7 @@
     // include "php/getCurrentMonth.php";
     // $json_decoded = json_decode(getCurrentMonth($username));
 
-    $json_decoded = json_decode(getMonthData($email));
+    $json_decoded = json_decode(getMonthData($email), true);
     $totalIncome = 0;
     $totalExpenses = 0;
 
