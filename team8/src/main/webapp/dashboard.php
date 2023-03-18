@@ -1,13 +1,13 @@
 <?php
 
-    // session_start();
+    session_start();
 
-    // if (!isset($_SESSION['username']))
-    //     header("Location: login.php");
+    if (!isset($_SESSION['email']))
+        header("Location: login.php");
 
-    // $username = $_SESSION['username'];
+    $username = $_SESSION['username'];
     // $userID = $_SESSION['userID'];
-    // $userEmail= $_SESSION['email'];
+    $email= $_SESSION['email'];
 
     include "backend/functions.php";
     // createUser("testUser4", "testEmail4@gmail.com", "abcd");
@@ -69,11 +69,11 @@
 
                                 <?php 
 
-                                    if (count($json_decoded["Income"]) === 0)
+                                    if (!isset($json_decoded["Income"]) || count($json_decoded["Income"]) === 0)
                                         echo "You have no income sources.";
                                     else
                                         foreach ($json_decoded["Income"] as $category => $amount)
-                                            echo "<strong>" . $category . " - " . $amount . "</strong>";
+                                            echo "<strong>" . $category . " - $" . $amount . "</strong>";
                                 ?>
 
                                 <!-- <strong style="color: #ff264a">Utilities</strong>
@@ -90,11 +90,11 @@
 
                         <?php 
 
-                            if (count($json_decoded["Expenses"]) === 0)
+                            if (!isset($json_decoded["Expenses"]) || count($json_decoded["Expenses"]) === 0)
                                 echo "You have no expenses.";
                             else
                                 foreach ($json_decoded["Expenses"] as $category => $amount)
-                                    echo "<strong>" . $category . " - " . $amount . "</strong><br>";
+                                    echo "<strong>" . $category . " - $" . $amount . "</strong><br>";
                         ?>
 
                         <!-- <p>Net Income</p>
@@ -110,9 +110,9 @@
                 </div>
                 <div class = "grid-section-body" id = "budget-goals">
                     <table>
-                        <tr><td>Total Income:</td><td><?php echo $totalIncome; ?></td></tr>
-                        <tr><td>Total Expenses:</td><td><?php echo $totalExpenses; ?></td></tr>
-                        <tr><td>Net Income:</td><td><?php echo $netIncome; ?></td></tr>
+                        <tr><td>Total Income:</td><td>$<?php echo $totalIncome; ?></td></tr>
+                        <tr><td>Total Expenses:</td><td>$<?php echo $totalExpenses; ?></td></tr>
+                        <tr><td>Net Income:</td><td>$<?php echo $netIncome; ?></td></tr>
                     </table>
 
                     <!-- <div class="text-spaced-out">
