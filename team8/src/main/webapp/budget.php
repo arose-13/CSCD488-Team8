@@ -7,14 +7,14 @@
     );
     */
 
-    //session_start();
+    session_start();
 
-    //if (!isset($_SESSION['username']))
-        //header("Location: login.php");
+    if (!isset($_SESSION['email']))
+        header("Location: login.php");
 
-    //$username = $_SESSION['username'];
+    $username = $_SESSION['username'];
     //$userID = $_SESSION['userID'];
-    //$userEmail = $_SESSION['email'];
+    $email = $_SESSION['email'];
 
     // include "backend/functions.php";
     // $json_decoded = json_decode(getMonthJson($email));
@@ -143,7 +143,7 @@
                     <div class = "budget-items">
                         <?php
                         $i = 0;
-                        if (count($json_decoded) === 0 || count($json_decoded["Income"]) === 0)
+                        if (!isset($json_decoded["Income"]) || count($json_decoded["Income"]) === 0)
                             echo "<p>You have no income sources.</p>";
                         else
                             foreach ($json_decoded["Income"] as $key => $value) {
@@ -161,7 +161,7 @@
                     <div class = "budget-items">
                     <?php
                         $i = 0;
-                        if (count($json_decoded) === 0 || count($json_decoded["Expenses"]) === 0)
+                        if (!isset($json_decoded["Expenses"]) || count($json_decoded["Expenses"]) === 0)
                             echo "<p>You have no expenses.</p>";
                         else
                             foreach ($json_decoded["Expenses"] as $key => $value) {
