@@ -53,18 +53,28 @@ function login($email, $password) {
         }        
         if(password_verify($password, $hashString)) { 
             echo "Password is correct";
+            $query = "SELECT * from appusertable where email = '" . $email . "';";
+            $result = mysqli_query($conn, $query)
+                or die ("Could not execute the query in the login method.");
+
+            mysqli_close($conn);
+
+            if (mysqli_num_rows($result) != 1)
+                return "Incorrect password.";
+            else
+                return "Success";
         }
             
-        $query = "SELECT * from appusertable where email = '" . $email . "';";
-        $result = mysqli_query($conn, $query)
-            or die ("Could not execute the query in the login method.");
+        // $query = "SELECT * from appusertable where email = '" . $email . "';";
+        // $result = mysqli_query($conn, $query)
+        //     or die ("Could not execute the query in the login method.");
 
-        mysqli_close($conn);
+        // mysqli_close($conn);
 
-        if (mysqli_num_rows($result) != 1)
-            return "Incorrect password.";
-        else
-            return "Success";
+        // if (mysqli_num_rows($result) != 1)
+        //     return "Incorrect password.";
+        // else
+        //     return "Success";
     }
     else
         return "User doesn't exist!";

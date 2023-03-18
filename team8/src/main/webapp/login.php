@@ -44,6 +44,7 @@
            
             if($result != "Success") {
                 echo $result;
+                echo "Error signing in";
             } else {
                 header('location:dashboard.php');
             }
