@@ -1,7 +1,11 @@
 <?php
 
+session_start();
+
 echo "Logging you out...";
-session_destroy();
-header("Location: login.php");
+if (session_destroy()) {
+    header("Location: login.php");
+}
+
 
 ?>

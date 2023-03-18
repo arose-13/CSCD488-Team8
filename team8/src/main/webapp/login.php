@@ -35,7 +35,7 @@
 </html>
 <?php include "backend/functions.php";
 
-        if($_POST["email"] != null && $_POST["password"] != null && $_POST["uname"] != null) {
+        if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["uname"])) {
             $email = $_POST["email"];
             $password = $_POST["password"];
             $uName = $_POST["uname"];
@@ -46,6 +46,9 @@
                 echo $result;
                 echo "Error signing in";
             } else {
+                session_start();
+                $_SESSION['email'] = $email;
+                $_SESSION['username'] = $uName;
                 header('location:dashboard.php');
             }
         }
