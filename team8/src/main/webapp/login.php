@@ -33,13 +33,31 @@
 
 </body>
 </html>
-<?php
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $uName = $_POST["uname"];
-        echo $email;
-        echo $password;
-        echo $uName;
+<?php include "backend/functions.php";
+
+        if($_POST["email"] != null && $_POST["password"] != null && $_POST["uname"] != null) {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $uName = $_POST["uname"];
+            echo $email;
+            echo $password;
+            echo $uName;
+
+            //password validation needed
+            //email validation needed
+            //username validation needed
+
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+
+            $result = login($email, $hash);
+
+            if($result != "Success") {
+                echo $result;
+            } else {
+                $monthData = getMonthData($email);
+                echo $monthData;
+            }
+        }
 
         
 

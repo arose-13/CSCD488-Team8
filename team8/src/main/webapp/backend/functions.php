@@ -18,7 +18,7 @@ function createUser($username, $email, $hash) {
 
     $conn = dbConnect();
 
-    if (!userExists($email)) {
+    if (!userExists($email)) { 
         $currDate = date("m-d-y");
         $monthDatas = [];
 
@@ -152,7 +152,7 @@ function userExists($email) {
 
     $conn = dbConnect();
 
-    $query = "SELECT * FROM 'appusertable' WHERE 'email' = " . $email . ";";
+    $query = "SELECT * FROM 'appusertable' WHERE 'email' = " . $email . ";"; 
     $result = mysqli_query($conn, $query)
             or die ("Could not execute the query that checks for a user's existance.");
 
