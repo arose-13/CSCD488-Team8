@@ -39,23 +39,13 @@
             $email = $_POST["email"];
             $password = $_POST["password"];
             $uName = $_POST["uname"];
-            echo $email;
-            echo $password;
-            echo $uName;
 
-            //password validation needed
-            //email validation needed
-            //username validation needed
-
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-
-            $result = login($email, $hash);
-
+            $result = login($email, $password);
+           
             if($result != "Success") {
                 echo $result;
             } else {
-                $monthData = getMonthData($email);
-                echo $monthData;
+                header('location:dashboard.php');
             }
         }
 
