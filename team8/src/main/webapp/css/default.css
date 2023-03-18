@@ -5,6 +5,31 @@ html, body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(255, 186, 49);
+    transition-duration: 0.5s;
+}
+a:hover {
+    color: orange;
+    transition-duration: 0.5s;
+}
+
+button, input[type="submit"] {
+    color: white;
+    background-color: rgb(255, 186, 49);
+    font-size: medium;
+    border-radius: 5px;
+    border: 2px solid rgb(255, 186, 49);
+    padding: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    color: rgb(255, 186, 49);
+    background-color: white;
+    border: 2px solid rgb(255, 186, 49);
+}
+
 /* header styling */
 .header {
     display: flex;
@@ -14,6 +39,38 @@ html, body {
 }
 .header .logo {
     margin-right: 25px;
+}
+
+/* Homepage styling */
+.full-screen-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 25rem;
+    border-bottom: 1px solid rgb(255, 186, 49);
+}
+.split-screen-section {
+    height: 15rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 2px solid rgb(255, 186, 49);
+}
+.split-screen-section .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10%;
+}
+.split-screen-section .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10%;
 }
 
 /* Dashboard styling */
