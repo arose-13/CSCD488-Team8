@@ -33,13 +33,21 @@
 
 </body>
 </html>
-<?php
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $uName = $_POST["uname"];
-        echo $email;
-        echo $password;
-        echo $uName;
+<?php include "backend/functions.php";
+
+        if($_POST["email"] != null && $_POST["password"] != null && $_POST["uname"] != null) {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $uName = $_POST["uname"];
+
+            $result = login($email, $password);
+           
+            if($result != "Success") {
+                echo $result;
+            } else {
+                header('location:dashboard.php');
+            }
+        }
 
         
 

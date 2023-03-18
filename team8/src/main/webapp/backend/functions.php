@@ -40,15 +40,22 @@ function createUser($username, $email, $hash) {
     mysqli_close($conn);
 }
 
-function login($email, $hash) {
-    if ($email == NULL || $hash == NULL
-        || $email == "" || $hash == "")
+function login($email, $password) {
+    if ($email == NULL || $password == NULL
+        || $email == "" || $password == "")
         return "Input was invalid.";
 
     if (userExists($email)) {            
         $conn = dbConnect();
+        $hash = getHash($email); 
+        while($row = mysqli_fetch_array($hash)) {   
+            $hashString = $row['password'];
+        }        
+        if(password_verify($password, $hashString)) { 
+            echo "Password is correct";
+        }
             
-        $query = "SELECT * from appusertable where email = '" . $email . "' AND password = '" . $hash . "';";
+        $query = "SELECT * from appusertable where email = '" . $email . "';";
         $result = mysqli_query($conn, $query)
             or die ("Could not execute the query in the login method.");
 
@@ -167,4 +174,19 @@ function deleteUser($email) {
         return "User doesn't exist!";
 }
 
+function getHash($email) {
+    if($email == NULL)
+        return "Input is invalid";
+    $conn = dbConnect();
+    $query = "SELECT password FROM appusertable WHERE email = '" . $email . "';";
+    $result = mysqli_query($conn, $query)
+        or die ("Could not execute the query that retrieves the user's hashed password.");
+
+    mysqli_close($conn);
+
+    if(mysqli_num_rows($result) != 1)
+        return "Error retrieving hashed password";
+    else 
+        return $result;
+}
 ?>
