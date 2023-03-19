@@ -134,15 +134,22 @@
                         <p><?php echo $totalExpenses?></p>
                     </div>
                     <div id="categories-list">
-                        <ul class="category-item">
-                            Utilities: $100 spent / $100
-                            <div class="progress-bar">
-                                <div class="progress__fill" id="utilities">
-                                    <span class="progress__text"></span>
-                                </div>
-                            </div>
-                        </ul>
-                        <ul class="category-item">Rent: $500 spent / $500
+                    <?php
+                        if (isset($json_decoded["Expenses"]))
+                            foreach ($json_decoded["Expenses"] as $category => $amount) {
+                    ?>
+                                <ul class="category-item">
+                                    <span><?php echo $category . ": ";?></span><span><?php echo $amount;?></span>
+                                    <!-- <div class="progress-bar">
+                                        <div class="progress__fill" id="utilities">
+                                            <span class="progress__text"></span>
+                                        </div>
+                                    </div> -->
+                                </ul>
+                    <?php
+                            }
+                    ?>
+                        <!-- <ul class="category-item">Rent: $500 spent / $500
                             <div class="progress-bar">
                                 <div class="progress__fill"  id="rent">
                                     <span class="progress__text"></span>
@@ -169,7 +176,7 @@
                                     <span class="progress__text"></span>
                                 </div>
                             </div>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

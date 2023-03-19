@@ -183,6 +183,7 @@ button:hover {
     justify-content: space-between;
     border-bottom: 2px solid black;
     margin-bottom: 0px;
+    padding-right: 30px;
     /* margin-top: 20px; */
     /* margin: auto; */
 }
