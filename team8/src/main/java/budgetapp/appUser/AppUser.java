@@ -18,11 +18,17 @@ public class AppUser {
         }
     }
 
+    public AppUser(final String uname, final String email) {
+        this();
+        setuName(uname);
+        setEmail(email);
+    }
+
     public AppUser(final String uname, final String password, final String email, final String date) throws Exception {
         this();
         setuName(uname);
-        setPassword(password);
         setEmail(email);
+        setPassword(password);
         long mills = System.currentTimeMillis();
         java.sql.Date agreeDate = new java.sql.Date(mills);
         if (String.valueOf(agreeDate).compareTo(date) == 0) {
