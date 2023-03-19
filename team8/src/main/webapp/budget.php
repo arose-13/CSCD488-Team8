@@ -151,7 +151,7 @@
                                 <input type = 'checkbox' id = 'income" . $i . "' name = 'incomeItems[]' value = '" . $key . "'>";
                                 $i++;
                             }
-                            
+
                         ?>
                     </div>
                 </div>
