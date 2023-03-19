@@ -27,9 +27,6 @@
         <a class="login-form-submit" href="changeEmail.php" target="_blank">Change Email</a><br> 
         <a class="login-form-submit" href="changeUsername.php" target="_blank">Change Username</a><br>
         <a class="login-form-submit" href="changePassword.php" target="_blank">Change Password</a><br>
-        <!-- <input type="submit" name="change-email" id="login-form-submit" value="Change Email" />
-        <input type="submit" name="change-uname" id="login-form-submit" value="Change Username"/>
-        <input type="submit" name="change-pword" id="login-form-submit" value="Change Password"/> -->
     </div><br>
 
     <div class="dashboard-grid" id="account-info">
@@ -64,18 +61,18 @@
             }
         }
 
-        function updateEmail($newEmail){ //implemented correctly
+        function updateEmail($newEmail){ 
             $oldEmail = $_SESSION["email"];
             $result = changeUserEmail($oldEmail, $newEmail); 
             echo $result; 
         }
-        function updatePassword($newPassword) {  //implemented correctly
+        function updatePassword($newPassword) {  
             $email = $_SESSION["email"];
             $newHash = password_hash($newPassword, PASSWORD_DEFAULT);
             $result = changeUserPassword($email, $newHash);
             echo $result;
         }
-        function updateUsername($newUsername) { //implemented correctly
+        function updateUsername($newUsername) { 
             $email = $_SESSION["email"];
             $result = changeUsername($email, $newUsername);
             echo $result;

@@ -30,16 +30,19 @@
 
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
-        echo $username;
-        echo $email;
-
+       
         if($_POST["submit"] != null && $_POST["password"] != null && $_POST["newUsername"] != NULL) {
                 $newUsername = $_POST["newUsername"];
                 $password = $_POST["password"];
-                echo $email;
-                $result = changeUsername($email, $newUsername, $password);
-                echo $result; 
-                header('Location: logout.php');
+                if(! preg_match('/^\w{5,}$/', $newUsername)) {
+                    echo "Please enter alpha numberic username!<br>";
+                } else {
+                    $result = changeUsername($email, $newUsername, $password);
+                    echo $result; 
+                    $_SESSION["username"] = $newUsername;
+                    header('Location: dashboard.php');
+                }
+
         } else {
             return "Please enter in all fields";
         }

@@ -35,12 +35,16 @@
 
         if($_POST["submit"] != NULL && $_POST["password"] != NULL && $_POST["reenterNewPassword"] != NULL) {
             if($_POST["newPassword"] == $_POST["reenterNewPassword"]) {
-                echo "okay";
                 $newPassword = $_POST["newPassword"];
                 $password = $_POST["password"];
-                $result = changeUserPassword($email, $password, $newPassword);
-                echo $result; 
-                header('Location: logout.php');
+                if(! ctype_alnum($password)) {
+                    echo "Invalid password!";
+                } else {
+                    $result = changeUserPassword($email, $password, $newPassword);
+                    echo $result; 
+                    $_SESSION["password"] = $newPassword;
+                    header('Location: dashboard.php');
+                }
             } else {
                 echo "Passwords did not match!";
             }
