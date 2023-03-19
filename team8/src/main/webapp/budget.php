@@ -133,6 +133,22 @@
 
         </form>
 
+        <!-- Added -->
+        <!-- <form method = "POST" action = "">
+
+            <table>
+                <tr>
+                    <td>Overall Spending Goal</td>
+                </tr>
+                <tr><td>Name:</td><td><input type = "text" name = "name"></td></tr> 
+                <tr><td>Amount:</td><td><input type = "number" step = "0.01" name = "goal-amount"></td></tr>
+                <tr><td colspan = "2" style = "text-align:center;">
+                <button name = "itemSubmit">Submit</button>
+                </td></tr>
+            </table>
+
+        </form> -->
+
         <div class = "budget-page-display">
 
             <form method = "POST" action = "">
@@ -151,7 +167,7 @@
                                 <input type = 'checkbox' id = 'income" . $i . "' name = 'incomeItems[]' value = '" . $key . "'>";
                                 $i++;
                             }
-                            
+
                         ?>
                     </div>
                 </div>
@@ -176,6 +192,31 @@
             </div>
             <button name = "itemRemove">Remove Items</button>
             </form>
+
+            <!-- Added
+            <form method = "POST" action = "">
+                <h2>Spending goal: 
+                <?php 
+                    // if(!isset($_POST["goal-amount"]) && !isset($_SESSION["spending-goal"])) {
+                    //     echo "No set spending goal";
+                    // } else {
+                    //     if(!isset($_SESSION["spending-goal"])) {
+                    //         $_SESSION["spending-goal"] = $_POST["goal-amount"];
+                    //         echo $_POST["goal-amount"];
+                    //     }
+                    //     if(!isset($_POST["goal-amount"])) {
+                    //         echo $_SESSION["spending-goal"];
+                    //     }
+                    //     else {
+                    //         if($_POST["goal-amount"] != $_SESSION["spending-goal"]) {
+                    //             $_SESSION["spending-goal"] = $_POST["goal-amount"];
+                    //             echo $_POST["goal-amount"];
+                    //         }
+                    //     }
+                    // }
+                ?></h2>
+            <button name = "itemRemove">Remove Goal</button>
+            </form> -->
 
         </div>
 

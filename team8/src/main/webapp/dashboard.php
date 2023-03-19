@@ -116,7 +116,7 @@
 
             <div class = "grid-section">
                 <div class = "grid-section-header">
-                    <p>Budget Goals</p>
+                    <p>Budget</p>
                 </div>
                 <div class = "grid-section-body" id = "budget-goals">
                     <!-- <table>
@@ -125,12 +125,20 @@
                         <tr><td>Net Income:</td><td>$<?php echo $netIncome; ?></td></tr>
                     </table> -->
 
-                    <div class="text-spaced-out">
+                    <!-- <div class="text-spaced-out">
                         <p>Spending Goal:</p>
-                        <p>???</p>
-                    </div>
+                        <p>
+                            <?php 
+                                if(!isset($_SESSION["spending-goal"])){
+                                    echo "Not set. Visit update budget page";
+                                } else {
+                                    echo $_SESSION["spending-goal"];
+                                }
+                            ?>
+                        </p>
+                    </div> -->
                     <div class="text-spaced-out" id="actual-spending">
-                        <p>Actual Spending:</p>
+                        <p>Overall Spending:</p>
                         <p><?php echo $totalExpenses?></p>
                     </div>
                     <div id="categories-list">
