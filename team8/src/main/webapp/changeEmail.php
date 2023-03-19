@@ -32,12 +32,16 @@
         $oldEmail = $_SESSION['email'];
 
         if($_POST["submit"] != null && $_POST["password"] != null && $_POST["newEmail"] != NULL) {
-                echo "okay";
                 $newEmail = $_POST["newEmail"];
                 $password = $_POST["password"];
-                $result = changeUserEmail($oldEmail, $newEmail, $password); 
-                echo $result; 
-                header('Location: logout.php');
+                if(! filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+                    echo "Please enter a correct email!<br>";
+                } else {
+                    $result = changeUserEmail($oldEmail, $newEmail, $password); 
+                    echo $result; 
+                    $_SESSION["email"] = $newEmail;
+                    eader('Location: dashboard.php');
+                }
         } else {
             return "Please enter in all fields";
         }

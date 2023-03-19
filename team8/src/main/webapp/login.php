@@ -38,17 +38,29 @@
             $email = $_POST["email"];
             $password = $_POST["password"];
             $uName = $_POST["uname"];
+            if(! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "Please enter a correct email!<br>";
+            }
 
-            $result = login($email, $password);
-           
-            if($result != "Success") {
-                echo $result;
-                echo "Error signing in";
-            } else {
-                session_start();
-                $_SESSION['email'] = $email;
-                $_SESSION['username'] = $uName;
-                header('location:dashboard.php');
+            if(! preg_match('/^\w{5,}$/', $uName)) {
+                echo "Please enter alpha numberic username!<br>";
+            }
+            if(! ctype_alnum($password)) {
+                echo "Please enter a valid password: characters and digits only!";
+            }
+            else {
+
+                $result = login($email, $password);
+            
+                if($result != "Success") {
+                    echo $result;
+                    echo "Error signing in";
+                } else {
+                    session_start();
+                    $_SESSION['email'] = $email;
+                    $_SESSION['username'] = $uName;
+                    header('location:dashboard.php');
+                }
             }
         }
 

@@ -50,7 +50,7 @@
 
     <main>
         <div class="dash-banner">
-            <li>Month of: February</li>
+            <li>Month of: <?php echo date('F')?></li>
             <li><?php echo $username ?></li>
         </div>
 
@@ -62,13 +62,13 @@
                 </div>
                 <div class = "grid-section-body" id = "month-summary">
                     <div id = "income">
-                        <h3 class="rounded-container">This is your income</h3>
+                        <p class="rounded-container">Income: <?php echo $totalIncome?></p>
                         <div class="grid-section-body" id="pie-chart">
                             <div class="x-box"></div>
                             <div class="x-box-cont">
 
                                 <?php 
-
+                                    
                                     if (!isset($json_decoded["Income"]) || count($json_decoded["Income"]) === 0)
                                         echo "You have no income sources.";
                                     else
@@ -86,20 +86,30 @@
                         </div>
                     </div>
                     <div id = "expenses">
-                        <h3 class="rounded-container">These are your expenses.</h3>
+                        <p class="rounded-container">Expenses: <?php echo $totalExpenses?></p>
 
                         <?php 
 
-                            if (!isset($json_decoded["Expenses"]) || count($json_decoded["Expenses"]) === 0)
-                                echo "You have no expenses.";
-                            else
-                                foreach ($json_decoded["Expenses"] as $category => $amount)
-                                    echo "<strong>" . $category . " - $" . $amount . "</strong><br>";
+                            // if (!isset($json_decoded["Expenses"]) || count($json_decoded["Expenses"]) === 0)
+                            //     echo "You have no expenses.";
+                            // else
+                            //     foreach ($json_decoded["Expenses"] as $category => $amount)
+                            //         echo "<strong>" . $category . " - $" . $amount . "</strong><br>";
                         ?>
 
-                        <!-- <p>Net Income</p>
-                        <div class="rounded-container" id="net-income">+ $500</div>
-                        <div id="user-message">Congradulations! You saved $500 this month!</div> -->
+                        <p>Net Income</p>
+                        <div class="rounded-container" id="net-income">
+                            <?php 
+                                if($netIncome > 0) {echo "+";}
+                                echo " " . $netIncome;
+                            ?>
+                        </div>
+                        <div id="user-message">
+                            <?php
+                                if($netIncome > 0) {echo "Congraduations! You saved " . $netIncome . " this month!";}
+                                else {echo "You lost " . $netIncome . " this month. Time to start saving!";}
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,19 +119,19 @@
                     <p>Budget Goals</p>
                 </div>
                 <div class = "grid-section-body" id = "budget-goals">
-                    <table>
+                    <!-- <table>
                         <tr><td>Total Income:</td><td>$<?php echo $totalIncome; ?></td></tr>
                         <tr><td>Total Expenses:</td><td>$<?php echo $totalExpenses; ?></td></tr>
                         <tr><td>Net Income:</td><td>$<?php echo $netIncome; ?></td></tr>
-                    </table>
+                    </table> -->
 
-                    <!-- <div class="text-spaced-out">
+                    <div class="text-spaced-out">
                         <p>Spending Goal:</p>
-                        <p>$200</p>
+                        <p>???</p>
                     </div>
                     <div class="text-spaced-out" id="actual-spending">
                         <p>Actual Spending:</p>
-                        <p>$100</p>
+                        <p><?php echo $totalExpenses?></p>
                     </div>
                     <div id="categories-list">
                         <ul class="category-item">
@@ -160,7 +170,7 @@
                                 </div>
                             </div>
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

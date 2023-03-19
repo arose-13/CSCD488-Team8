@@ -234,10 +234,7 @@ function getHash($email) {
 
     if(mysqli_num_rows($result) != 1)
         return "Error retrieving hashed password";
-    else {
-        // while($row = mysqli_fetch_array($hash)) {   
-        //     $resultString = $row['password'];
-        // } 
+    else { 
         return $result;
     }
 }
