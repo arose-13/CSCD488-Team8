@@ -330,3 +330,20 @@ main {
     padding-right: 3%;
     padding-left: 3%;
 }
+#account-info {
+    align-content: center;
+}
+.hidden-form {
+    display: none;
+}
+.active-form {
+    display: block;
+}
+.change-account {
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: column; */
+    height: 30px;
+    /* width: 200px; */
+    margin: 5px;
+}

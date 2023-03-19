@@ -120,30 +120,68 @@ function updateMonthData($email, $newMonthData) {
         return "The result of the query to get the month's data was null!";
 }
 
-function changeUserEmail($oldEmail, $newEmail) {
-    if ($oldEmail == NULL || $newEmail == NULL)
+function changeUserEmail($oldEmail, $newEmail, $password) {
+    if ($oldEmail == NULL || $newEmail == NULL || $password == NULL)
         return "Input was null.";
 
     $conn = dbConnect();
 
-    $query = "UPDATE appusertable SET email = " . $newEmail . " WHERE email = " . $oldEmail . ";";
-    $result = mysqli_query($conn, $query)
-            or die ("Could not execute the query to update the user's email.");
+    $hash = getHash($oldEmail);
 
-    return "Success";
+    while($row = mysqli_fetch_array($hash)) {   
+        $hashString = $row['password'];
+    } 
+    if(password_verify($password, $hashString)) { 
+        $query = "UPDATE appusertable SET email = '" . $newEmail . "' WHERE email = '" . $oldEmail . "';";
+        $result = mysqli_query($conn, $query)
+                or die ("Could not execute the query to update the user's email.");
+
+        return "Success";
+    }
+    else {
+        return "Error, wrong password";
+    }
 }
 
-function changeUserPassword($email, $hash) {
-    if ($email == NULL || $hash == NULL)
+function changeUserPassword($email, $password, $newPassword) {
+    if ($email == NULL || $newPassword ==  NULL || $password == NULL)
         return "Input was null.";
 
     $conn = dbConnect();
+    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    $oldHash = getHash($email);
+    while($row = mysqli_fetch_array($oldHash)) {   
+        $oldHashString = $row['password'];
+    }        
+    if(password_verify($password, $oldHashString)) { 
+        $query = "UPDATE appusertable SET password = '" . $newPasswordHash . "' WHERE email = '" . $email . "';";
+        $result = mysqli_query($conn, $query)
+                or die ("Could not execute the query to update the user's email.");
 
-    $query = "UPDATE appusertable SET password = " . $hash . " WHERE email = " . $email . ";";
-    $result = mysqli_query($conn, $query)
-            or die ("Could not execute the query to update the user's email.");
+        return "Updating password to $newPassword";
+    } else {
+        return "Error, incorrect password";
+    }
+}
 
-    return "Success";
+function changeUsername($email, $newUserName, $password) {
+    if ($email == NULL || $newUserName == NULL || $password == NULL)
+        return "Input was null.";
+    $conn = dbConnect();
+    $hash = getHash($email);
+    while($row = mysqli_fetch_array($hash)) {   
+        $hashString = $row['password'];
+    }       
+    echo $hashString; 
+    if(password_verify($password, $hashString)) { 
+        $query = "UPDATE appusertable SET userName = '" . $newUserName . "' WHERE email = '" . $email . "';";
+        $result = mysqli_query($conn, $query)
+                or die ("Could not execute the query to update the user's email.");
+
+        return "Updated username";
+    } else {
+        return "Incorrect password";
+    }
 }
 
 function userExists($email) {
@@ -196,7 +234,11 @@ function getHash($email) {
 
     if(mysqli_num_rows($result) != 1)
         return "Error retrieving hashed password";
-    else 
+    else {
+        // while($row = mysqli_fetch_array($hash)) {   
+        //     $resultString = $row['password'];
+        // } 
         return $result;
+    }
 }
 ?>
