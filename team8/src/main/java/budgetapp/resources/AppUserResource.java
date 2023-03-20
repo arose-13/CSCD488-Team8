@@ -1,6 +1,8 @@
 package budgetapp.resources;
 
-import javax.validation.constraints.Email;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -115,7 +117,7 @@ public class AppUserResource {
 
     // Verification email should be done before this is curl
     @PUT
-    @Path("/changeUserName/{uname}/{email}/{newPwd}")
+    @Path("/changeUserPwd/{uname}/{email}/{newPwd}")
     @Produces(MediaType.APPLICATION_JSON)
     public boolean changeUserPwd(@PathParam("uname") String uname, @PathParam("email") String email,
             @PathParam("newPwd") String newPwd) throws Exception {
@@ -130,14 +132,23 @@ public class AppUserResource {
         return false;
     }
 
-    @PUT
-    @Path("/updateUserData/{uname}/{email}/{data}")
+    @POST
+    @Path("/updateUserData/{uname}/{email}/{dataExp}/{dataAct}")
     @Produces(MediaType.APPLICATION_JSON)
     public boolean changeUserPwd(@PathParam("uname") String uname, @PathParam("email") String email,
-            @PathParam("data") UserData[] data) throws Exception {
+            @PathParam("dataExp") String exp, @PathParam("dataAct") String act) throws Exception {
         try {
+
+            double expVal = Double.parseDouble(exp);
+            double actVal = Double.parseDouble(act);
+            long mills = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(mills);
+            int month = extractDate(date) -1;
+            UserData[] newData = new UserData[12];
+            newData[month].setActual(actVal);
+            newData[month].setExpected(expVal);
             JavaDBConnect myConnection = new JavaDBConnect();
-            myConnection.updateUserData(uname, email, null, data);
+            myConnection.updateUserData(uname, email, null, newData);
             // Method needs to be modified to not require Date
             return true;
         } catch (Exception e) {
@@ -150,5 +161,17 @@ public class AppUserResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String testString() throws Exception {
         return "user GET";
+    }
+
+    public int extractDate(String dateSQLFormat) {
+        java.sql.Date dat = java.sql.Date.valueOf(dateSQLFormat);
+        return extractDate(dat);
+    }
+
+    public int extractDate(Date dat) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        int month = cal.get(Calendar.MONTH);
+        return month;
     }
 }
