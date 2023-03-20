@@ -13,7 +13,7 @@
         <h1>Login Page</h1>
 
         <h2>Please enter in email and password below</h2>
-        <form id="login" action="login.php" method="post">
+        <form id="login" action="login.php" method="post" autocomplete="off">
             <label for="uname">Username: </label><br>
             <input type="text" id="uname" name="uname"><br>
             <label for="email">Email Address: </label><br>
@@ -33,7 +33,7 @@
 </body>
 </html>
 <?php include "backend/functions.php";
-
+        session_start();
         if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["uname"])) {
             $email = $_POST["email"];
             $password = $_POST["password"];
@@ -56,7 +56,7 @@
                     echo $result;
                     echo "Error signing in";
                 } else {
-                    session_start();
+                    // session_start();
                     $_SESSION['email'] = $email;
                     $_SESSION['username'] = $uName;
                     header('location:dashboard.php');

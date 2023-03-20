@@ -46,7 +46,7 @@
 
     <?php include 'backend/functions.php';
 
-        if($_POST["submit"] != null) {
+        if(isset($_POST["submit"])) {
             if($_POST["newEmail"] != null){
                 $newEmail = $_POST["newEmail"];
                 updateEmail($newEmail);

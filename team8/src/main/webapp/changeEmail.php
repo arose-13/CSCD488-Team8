@@ -31,7 +31,7 @@
         $username = $_SESSION['username'];
         $oldEmail = $_SESSION['email'];
 
-        if($_POST["submit"] != null && $_POST["password"] != null && $_POST["newEmail"] != NULL) {
+        if(isset($_POST["submit"]) && isset($_POST["password"]) && isset($_POST["newEmail"])) {
                 $newEmail = $_POST["newEmail"];
                 $password = $_POST["password"];
                 if(! filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
@@ -40,7 +40,7 @@
                     $result = changeUserEmail($oldEmail, $newEmail, $password); 
                     echo $result; 
                     $_SESSION["email"] = $newEmail;
-                    eader('Location: dashboard.php');
+                    header('Location: dashboard.php');
                 }
         } else {
             return "Please enter in all fields";

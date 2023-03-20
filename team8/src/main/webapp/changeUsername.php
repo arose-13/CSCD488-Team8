@@ -31,7 +31,7 @@
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
        
-        if($_POST["submit"] != null && $_POST["password"] != null && $_POST["newUsername"] != NULL) {
+        if(isset($_POST["submit"]) && isset($_POST["password"]) && isset($_POST["newUsername"])) {
                 $newUsername = $_POST["newUsername"];
                 $password = $_POST["password"];
                 if(! preg_match('/^\w{5,}$/', $newUsername)) {

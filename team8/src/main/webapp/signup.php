@@ -13,7 +13,7 @@
         <title>Sign Up Page</title>
 
         <h1>Create Account</h1>
-        <form id="createdCredentials" action="signup.php" method="post">
+        <form id="createdCredentials" action="signup.php" method="post" autocomplete="off">
             <label for="uname">Username:</label><br>
             <input type="text" name="uname"><br>
             <label for="email">Email Address: </label><br>
@@ -30,8 +30,9 @@
     <?php include 'components/main-footer.html' ?>
 
     <?php include "backend/functions.php";
+    session_start();
     
-    if($_POST["email"] != null && $_POST["password"] != null && $_POST["uname"] != null && $_POST["reenterpassword"] != null) {
+    if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["uname"]) && isset($_POST["reenterpassword"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
         $reenterpassword = $_POST["reenterpassword"];
@@ -60,6 +61,8 @@
                 } 
                 else { 
                     echo "User successfully created";
+                    $_SESSION["email"] = $email;
+                    $_SESSION["username"] = $uName;
                     header('location:budget.php');
                 }
             }
