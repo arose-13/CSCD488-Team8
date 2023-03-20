@@ -50,7 +50,7 @@ public class JavaDBConnect {
         return user.getData();
     }
 
-    private void updateUserData(String userName, String email, Date createDate, UserData[] data) throws JsonProcessingException {
+    public void updateUserData(String userName, String email, Date createDate, UserData[] data) throws JsonProcessingException {
         try {
             String sql = "UPDATE `appusertable` SET `m01`=?, `m02`=?, `m03`=?, `m04`=?, `m05`=?, `m06`=?, `m07`=?, `m08`=?, `m09`=?, `m10`=?, `m11`=?, `m12`=? WHERE `userName`=? AND `email`=? AND `userCreationDate`=?;";
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class JavaDBConnect {
         return user.getPassword();
     }
 
-    private void changePassword(String userName, String newPass, String email, Date createDate) {
+    public void changePassword(String userName, String newPass, String email, Date createDate) {
         try{
             if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `password` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
@@ -147,7 +147,7 @@ public class JavaDBConnect {
         return user.getuName();
     }
 
-    private void changeUserName(String userName, String newUName, String email, Date createDate) {
+    public void changeUserName(String userName, String newUName, String email, Date createDate) {
         try{ 
             if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `userName` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
@@ -172,7 +172,7 @@ public class JavaDBConnect {
         return user.getEmail();
     }
 
-    private void changeEmail(String userName, String newEmail, String email, Date createDate) {
+    public void changeEmail(String userName, String newEmail, String email, Date createDate) {
         try{ 
             if (countSearchResults(userName, email) == 1) {
                 String sql = "UPDATE `appusertable` SET `email` = ? WHERE `userName` = ? AND `email` = ? AND `userCreationDate` = ?";
