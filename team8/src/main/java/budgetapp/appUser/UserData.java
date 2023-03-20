@@ -38,7 +38,6 @@ public class UserData {
         setActual(actual);
     }
 
-
     public double getExpected() {
         return expected;
     }
