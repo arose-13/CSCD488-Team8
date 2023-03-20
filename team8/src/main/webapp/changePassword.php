@@ -33,7 +33,7 @@
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
 
-        if($_POST["submit"] != NULL && $_POST["password"] != NULL && $_POST["reenterNewPassword"] != NULL) {
+        if(isset($_POST["submit"]) && isset($_POST["password"]) && isset($_POST["reenterNewPassword"])) {
             if($_POST["newPassword"] == $_POST["reenterNewPassword"]) {
                 $newPassword = $_POST["newPassword"];
                 $password = $_POST["password"];

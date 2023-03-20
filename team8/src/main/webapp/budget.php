@@ -11,7 +11,7 @@
 
     if (!isset($_SESSION['email']))
         header("Location: login.php");
-
+    
     $username = $_SESSION['username'];
     //$userID = $_SESSION['userID'];
     $email = $_SESSION['email'];
