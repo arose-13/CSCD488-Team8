@@ -3,7 +3,7 @@
 // All necessary functions for back-end functionality
 
 function dbConnect() {
-    $conn = mysqli_connect("localhost", "root", "N8Ters13!!")
+    $conn = mysqli_connect("localhost", "root", "")
         or die ("Could not connect to the server " . mysqli_error($conn));
 
     mysqli_select_db($conn, "budgetappuser")
