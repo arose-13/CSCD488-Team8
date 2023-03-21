@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <?php include 'components/main-header.html'; ?>
+    <?php include 'components/app-header.html'; ?>
 
     
     <div class="dashboard-grid" id="account-info">
@@ -55,4 +55,4 @@
 
 </body>
 
-<?php include 'components/main-footer.html'; ?>
+<?php include 'components/app-footer.html'; ?>

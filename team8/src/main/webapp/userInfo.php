@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <?php include 'components/main-header.html'; ?>
+    <?php include 'components/app-header.html'; ?>
 
     <?php 
         session_start();
@@ -24,9 +24,9 @@
     </div>
 
     <div>
-        <a class="login-form-submit" href="changeEmail.php" target="_blank">Change Email</a><br> 
-        <a class="login-form-submit" href="changeUsername.php" target="_blank">Change Username</a><br>
-        <a class="login-form-submit" href="changePassword.php" target="_blank">Change Password</a><br>
+        <a class="login-form-submit" href="changeEmail.php">Change Email</a><br> 
+        <a class="login-form-submit" href="changeUsername.php">Change Username</a><br>
+        <a class="login-form-submit" href="changePassword.php">Change Password</a><br>
     </div><br>
 
     <div class="dashboard-grid" id="account-info">
@@ -80,6 +80,6 @@
     ?>
     
 
-    <?php include 'components/main-footer.html'; ?>
+    <?php include 'components/app-footer.html'; ?>
 
 </body>
