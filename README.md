@@ -7,6 +7,9 @@ Spring-Winter 2022 Group Assignment
   - Alan Rose
   - Nathan Nelson
   - Ray Vernon
+  
+To launch this application, you will need to host a local Apache server and mySQL database. An application such as Xampp can do this.
+In order for the application to function properly on your machine, your database must have a "root" user with no password.
 
 <----------------------------------->
 
