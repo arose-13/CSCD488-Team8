@@ -7,18 +7,17 @@ Spring-Winter 2022 Group Assignment
   - Alan Rose
   - Nathan Nelson
   - Ray Vernon
-  
+
+
+### Launching Instructions:
 To launch this application, you will need to host a local Apache server and mySQL database. An application such as Xampp can do this.
 In order for the application to function properly on your machine, your database must have a "root" user with no password.
-
-<----------------------------------->
 
 # java -version
 - java version "18.0.1.1" 2022-04-22  
   Java(TM) SE Runtime Environment (build 18.0.1.1+2-6)  
   Java HotSpot(TM) 64-Bit Server VM (build 18.0.1.1+2-6, mixed mode, sharing)  
 
-<----------------------------------->
 # This project was init with Maven
 
 - mvn -v  
