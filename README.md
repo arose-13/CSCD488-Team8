@@ -1,6 +1,6 @@
 # CSCD488-Team8
 
-Spring-Winter 2022 Group Assignment
+Spring 2022 - Winter 2023 Senior Project
 
 # Group Members:
   - Nathan Graham
